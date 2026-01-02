@@ -1,87 +1,89 @@
-# 🚀 NestJS + Prisma + Supabase (Boilerplate Pro)
+# Snippy Backend API
 
-Ce projet est un Starter Kit (Boilerplate) moderne et robuste pour le développement d'APIs REST performantes. Il combine la puissance de **NestJS**, la flexibilité de **Prisma ORM** et la scalabilité de **Supabase**.
+Bienvenue sur le backend de **Snippy**, l'application de gestion de snippets de code. Cette API RESTful, propulsée par **NestJS**, fournit toute la logique serveur nécessaire pour lister, créer, organiser et sécuriser vos morceaux de code préférés.
 
----
+## 🛠 Technologies
 
-## 🌐 Déploiement & Documentation
+Ce projet s'appuie sur une stack robuste et moderne :
 
-Le projet est déployé en ligne et prêt à être testé.
+- **Core** : [NestJS](https://nestjs.com/) (Node.js framework)
+- **Langage** : TypeScript
+- **Base de données** : PostgreSQL
+- **ORM** : [Prisma](https://www.prisma.io/)
+- **Sécurité** : JWT (JSON Web Tokens) & Bcrypt
+- **API Docs** : Swagger (OpenAPI)
 
-*   **API URL :** [https://crud-nestjs-supabase.onrender.com/](https://crud-nestjs-supabase.onrender.com/)
-*   **Documentation Swagger :** [https://crud-nestjs-supabase.onrender.com/api](https://crud-nestjs-supabase.onrender.com/api) 👈 *Testez toutes les routes directement ici !*
+## 🚀 Fonctionnalités de l'API
 
----
+L'application Snippy gère les fonctionnalités clés suivantes via cette API :
 
-## 📖 Documentation API (Swagger)
+- **Authentification & Utilisateurs** : Inscription, connexion, et gestion de profils avec rôles (Admin/User).
+- **Gestion des Snippets** : Création, lecture, mise à jour et suppression (CRUD) de bouts de code. Support de la coloration syntaxique (via le langage spécifié) et mise en favoris.
+- **Organisation** : Classement des snippets dans des dossiers personnalisés (avec nom et couleur).
 
-L'API utilise **Swagger** (OpenAPI) pour fournir une interface interactive permettant de tester toutes les routes sans outils tiers comme Postman.
+## 📦 Installation
 
-### Accès
-- **En ligne :** `/api` après l'URL de déploiement.
-- **En local :** `http://localhost:3001/api`
+Assurez-vous d'avoir [Node.js](https://nodejs.org/) et [PostgreSQL](https://www.postgresql.org/) installés.
 
-### Fonctionnalités Swagger
-- **Visualisation :** Liste complète de toutes les routes (Auth, Joueurs, Equipes, Positions).
-- **Test direct :** Bouton "Try it out" pour envoyer des requêtes réelles.
-- **Validation :** Affiche les modèles de données (Schemas) attendus pour les requêtes POST/PUT.
+1. **Cloner le projet** :
+   ```bash
+   git clone <url-du-repo>
+   cd snippy-back
+   ```
 
----
+2. **Installer les dépendances** :
+   ```bash
+   npm install
+   ```
 
-## 🛠️ Stack Technique
+## ⚙️ Configuration
 
-*   **Framework :** [NestJS](https://nestjs.com/) (Architecture modulaire, TypeScript)
-*   **ORM :** [Prisma](https://www.prisma.io/) (Gestion de schéma, migrations, typage automatique)
-*   **Base de Données :** [Supabase](https://supabase.com/) (PostgreSQL managé)
-*   **Authentification :** 
-    *   [Passport.js](https://www.passportjs.org/) & [JWT](https://jwt.io/)
-    *   Hashage des mots de passe avec **Bcrypt**
-*   **Validation :** `class-validator` & `class-transformer`
+1. **Environnement** :
+   Créez un fichier `.env` à la racine (basé sur `.env.example` si présent) :
 
----
+   ```env
+   # Connexion Base de données
+   DATABASE_URL="postgresql://user:password@localhost:5432/snippy_db?schema=public"
 
-## ✨ Fonctionnalités Clés
+   # Secret JWT pour l'authentification
+   JWT_SECRET="votre_cle_secrete_complexe"
+   ```
 
-*   **Système d'Authentification Complet :** Inscription, Connexion et récupération du profil sécurisée.
-*   **CRUD complets :** Modules pour la gestion des **Équipes**, des **Joueurs** et des **Positions**.
-*   **Connexion Optimisée :** Configuration spéciale pour Supabase utilisant le **Connection Pooler** (port 6543) avec `pgbouncer`.
-*   **Validation Globale :** Protection automatique des entrées API grâce aux Pipes de validation.
+2. **Base de données** :
+   Appliquez les migrations pour créer le schéma de Snippy :
+   ```bash
+   npx prisma migrate dev --name init
+   npx prisma generate
+   ```
 
----
+## ▶️ Démarrage
 
-## ⚙️ Installation et Configuration Locale
+- **Mode développement** (recommandé pour travailler dessus) :
+   ```bash
+   npm run start:dev
+   ```
 
-### 1. Cloner le projet et installer les dépendances
-```bash
-npm install
-```
+- **Mode production** :
+   ```bash
+   npm run build
+   npm run start:prod
+   ```
 
-### 2. Configurer les variables d'environnement
-Créez un fichier `.env` à la racine :
-```env
-DATABASE_URL="postgresql://postgres.[ID_PROJET]:[PASSWORD]@aws-1-eu-west-3.pooler.supabase.com:6543/postgres?pgbouncer=true"
-JWT_SECRET="votre_cle_secrete_ultra_securisee"
-```
+Le serveur démarrera par défaut sur `http://localhost:3001`.
 
-### 3. Initialiser Prisma
-```bash
-npx prisma generate
-```
+## 📚 Documentation Interactive
 
-### 4. Lancer l'application
-```bash
-npm run start:dev
-```
+Pour explorer et tester les endpoints de l'API Snippy sans interface frontend :
 
----
+1. Lancez le serveur.
+2. Rendez-vous sur : **http://localhost:3001/api**
 
-## 📂 Organisation du Projet
-*   `src/auth` : Authentification (JWT, Strategies, DTOs).
-*   `src/equipes`, `src/joueurs`, `src/positions` : Modules métier.
-*   `src/prisma.service.ts` : Service de connexion centralisé.
-*   `prisma/schema.prisma` : Modèles de données.
+Vous y trouverez la documentation Swagger complète listant toutes les routes disponibles.
 
----
+## 📂 Structure du Code
 
-## 📜 Licence
-Projet libre d'utilisation. Développé pour être une base solide pour tout nouveau projet NestJS.
+- `src/auth` : Logique de connexion et protection des routes.
+- `src/snippets` : Cœur de l'application, gestion des codes.
+- `src/folders` : Gestion pour l'organisation en dossiers.
+- `src/generated` : Client Prisma typé.
+- `prisma/schema.prisma` : Définition de la structure de la base de données.

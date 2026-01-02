@@ -3,6 +3,8 @@ import { AuthService } from './auth.service';
 import { registerDto } from './dto/register.dto';
 import { loginDto } from './dto/login.dto';
 import { JwtAuthGuard } from './jwt.auth.guard';
+import { RolesGuard } from './roles.guard';
+import { Roles } from './roles.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -22,5 +24,12 @@ export class AuthController {
     @Get("/me")
     async me(@Request() req) {
         return this.authService.validateUser(req.user.sub);
+    }
+
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles("ADMIN")
+    @Post("dash")
+    getAdminDash(@Body() data: loginDto) {
+        return this.authService.login(data);
     }
 }

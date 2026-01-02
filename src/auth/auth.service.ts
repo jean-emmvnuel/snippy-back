@@ -10,7 +10,7 @@ export class AuthService {
     constructor(private readonly prisma: PrismaService, private readonly jwtService: JwtService) { }
 
     async register(data: registerDto) {
-        const { prenom, nom, email, password } = data;
+        const { nomUtilisateur, email, password } = data;
 
         const existingEmail = await this.prisma.user.findUnique({ where: { email } });
         if (existingEmail) {
@@ -21,15 +21,14 @@ export class AuthService {
 
         const user = await this.prisma.user.create({
             data: {
-                prenom,
-                nom,
+                nomUtilisateur,
                 email,
                 password: hashedPassword,
             },
             select: {
                 id: true,
-                prenom: true,
-                nom: true,
+                nomUtilisateur: true,
+                role: true,
                 email: true,
                 createdAt: true,
             },
@@ -37,11 +36,12 @@ export class AuthService {
         const payload = {
             sub: user.id,
             email: user.email,
+            role : user.role
         };
         const token = await this.jwtService.signAsync(payload);
         return {
             status: 201,
-            message: "otilisateur creer avec succes",
+            message: "utilisateur creer avec succes",
             data: {
                 user,
                 token,
@@ -56,9 +56,9 @@ export class AuthService {
             where: { email },
             select: {
                 id: true,
-                prenom: true,
-                nom: true,
+                nomUtilisateur: true,
                 email: true,
+                role: true,
                 password: true,
                 createdAt: true,
             },
@@ -75,6 +75,7 @@ export class AuthService {
         const payload = {
             sub: user.id,
             email: user.email,
+            role: user.role
         };
         const token = await this.jwtService.signAsync(payload);
         return {
@@ -83,8 +84,7 @@ export class AuthService {
             data: {
                 user: {
                     id: user.id,
-                    prenom: user.prenom,
-                    nom: user.nom,
+                    nomUtilisateur: user.nomUtilisateur,
                     email: user.email,
                     createdAt: user.createdAt,
                 },
@@ -98,15 +98,15 @@ export class AuthService {
             where: { id: userId },
             select: {
                 id: true,
-                prenom: true,
-                nom: true,
+                nomUtilisateur: true,
                 email: true,
                 createdAt: true,
             },
         });
         if (!user) {
-            throw new NotFoundException("utilisateur non trouve");
+            throw new NotFoundException("utilisateur non trouvé");
         }
         return user;
     }
+
 }

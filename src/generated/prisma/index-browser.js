@@ -120,32 +120,34 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.PlayerScalarFieldEnum = {
-  prenom: 'prenom',
-  nom: 'nom',
-  id: 'id',
-  teamId: 'teamId',
-  positionId: 'positionId'
-};
-
-exports.Prisma.PositionScalarFieldEnum = {
-  nom: 'nom',
-  id: 'id'
-};
-
-exports.Prisma.TeamScalarFieldEnum = {
-  nom: 'nom',
-  pays: 'pays',
-  id: 'id'
-};
-
 exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  prenom: 'prenom',
-  nom: 'nom',
   email: 'email',
   password: 'password',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  id: 'id',
+  nomUtilisateur: 'nomUtilisateur',
+  role: 'role'
+};
+
+exports.Prisma.FolderScalarFieldEnum = {
+  id: 'id',
+  nom: 'nom',
+  couleur: 'couleur',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.SnippetScalarFieldEnum = {
+  id: 'id',
+  titre: 'titre',
+  description: 'description',
+  code: 'code',
+  langage: 'langage',
+  isFavorite: 'isFavorite',
+  dossierId: 'dossierId',
+  utilisateurId: 'utilisateurId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -162,13 +164,15 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Role = exports.$Enums.Role = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
 
 exports.Prisma.ModelName = {
-  Player: 'Player',
-  Position: 'Position',
-  Team: 'Team',
-  User: 'User'
+  User: 'User',
+  Folder: 'Folder',
+  Snippet: 'Snippet'
 };
 
 /**

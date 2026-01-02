@@ -7,34 +7,53 @@ datasource db {
   provider = "postgresql"
 }
 
-model Player {
-  prenom     String
-  nom        String
-  id         Int      @id @default(autoincrement())
-  teamId     Int      @map("team_id")
-  positionId Int      @map("position_id")
-  position   Position @relation(fields: [positionId], references: [id])
-  team       Team     @relation(fields: [teamId], references: [id])
-}
-
-model Position {
-  nom     String   @unique
-  id      Int      @id @default(autoincrement())
-  players Player[]
-}
-
-model Team {
-  nom     String
-  pays    String?
-  id      Int      @id @default(autoincrement())
-  players Player[]
-}
-
 model User {
-  id        Int      @id @default(autoincrement())
-  prenom    String
-  nom       String
-  email     String   @unique
-  password  String
+  email          String   @unique
+  password       String
+  createdAt      DateTime @default(now()) @map("created_at")
+  id             Int      @id @default(autoincrement())
+  nomUtilisateur String   @map("nom_utilisateur")
+  role Role @default(USER)
+
+  folders Folder[]
+  snippets Snippet[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Folder {
+  id Int @id @default(autoincrement())
+  nom String
+  couleur String
   createdAt DateTime @default(now()) @map("created_at")
+
+  userId Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  snippets Snippet[]
+
+  @@map("folders")
+}
+
+model Snippet {
+  id            Int      @id @default(autoincrement())
+  titre         String
+  description   String?  @db.Text
+  code          String   @db.Text
+  langage       String
+  isFavorite    Boolean  @default(false)
+
+  dossierId     Int?
+  folder        Folder?  @relation(fields: [dossierId], references: [id], onDelete: SetNull)
+
+  utilisateurId Int
+  user          User     @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt
+
+  @@map("snippets")
 }

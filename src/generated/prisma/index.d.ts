@@ -14,25 +14,37 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Player
- * 
- */
-export type Player = $Result.DefaultSelection<Prisma.$PlayerPayload>
-/**
- * Model Position
- * 
- */
-export type Position = $Result.DefaultSelection<Prisma.$PositionPayload>
-/**
- * Model Team
- * 
- */
-export type Team = $Result.DefaultSelection<Prisma.$TeamPayload>
-/**
  * Model User
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Folder
+ * 
+ */
+export type Folder = $Result.DefaultSelection<Prisma.$FolderPayload>
+/**
+ * Model Snippet
+ * 
+ */
+export type Snippet = $Result.DefaultSelection<Prisma.$SnippetPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const Role: {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+}
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
 
 /**
  * ##  Prisma Client ʲˢ
@@ -41,8 +53,8 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Players
- * const players = await prisma.player.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  *
  *
@@ -62,8 +74,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Players
-   * const players = await prisma.player.findMany()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
    * ```
    *
    *
@@ -152,36 +164,6 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.player`: Exposes CRUD operations for the **Player** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Players
-    * const players = await prisma.player.findMany()
-    * ```
-    */
-  get player(): Prisma.PlayerDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.position`: Exposes CRUD operations for the **Position** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Positions
-    * const positions = await prisma.position.findMany()
-    * ```
-    */
-  get position(): Prisma.PositionDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.team`: Exposes CRUD operations for the **Team** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Teams
-    * const teams = await prisma.team.findMany()
-    * ```
-    */
-  get team(): Prisma.TeamDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
@@ -190,6 +172,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.folder`: Exposes CRUD operations for the **Folder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Folders
+    * const folders = await prisma.folder.findMany()
+    * ```
+    */
+  get folder(): Prisma.FolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.snippet`: Exposes CRUD operations for the **Snippet** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Snippets
+    * const snippets = await prisma.snippet.findMany()
+    * ```
+    */
+  get snippet(): Prisma.SnippetDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -624,10 +626,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Player: 'Player',
-    Position: 'Position',
-    Team: 'Team',
-    User: 'User'
+    User: 'User',
+    Folder: 'Folder',
+    Snippet: 'Snippet'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -643,232 +644,10 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "player" | "position" | "team" | "user"
+      modelProps: "user" | "folder" | "snippet"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Player: {
-        payload: Prisma.$PlayerPayload<ExtArgs>
-        fields: Prisma.PlayerFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PlayerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PlayerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
-          }
-          findFirst: {
-            args: Prisma.PlayerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PlayerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
-          }
-          findMany: {
-            args: Prisma.PlayerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>[]
-          }
-          create: {
-            args: Prisma.PlayerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
-          }
-          createMany: {
-            args: Prisma.PlayerCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PlayerCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>[]
-          }
-          delete: {
-            args: Prisma.PlayerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
-          }
-          update: {
-            args: Prisma.PlayerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
-          }
-          deleteMany: {
-            args: Prisma.PlayerDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PlayerUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PlayerUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>[]
-          }
-          upsert: {
-            args: Prisma.PlayerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
-          }
-          aggregate: {
-            args: Prisma.PlayerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePlayer>
-          }
-          groupBy: {
-            args: Prisma.PlayerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PlayerGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PlayerCountArgs<ExtArgs>
-            result: $Utils.Optional<PlayerCountAggregateOutputType> | number
-          }
-        }
-      }
-      Position: {
-        payload: Prisma.$PositionPayload<ExtArgs>
-        fields: Prisma.PositionFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PositionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PositionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>
-          }
-          findFirst: {
-            args: Prisma.PositionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PositionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>
-          }
-          findMany: {
-            args: Prisma.PositionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>[]
-          }
-          create: {
-            args: Prisma.PositionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>
-          }
-          createMany: {
-            args: Prisma.PositionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PositionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>[]
-          }
-          delete: {
-            args: Prisma.PositionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>
-          }
-          update: {
-            args: Prisma.PositionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>
-          }
-          deleteMany: {
-            args: Prisma.PositionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PositionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PositionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>[]
-          }
-          upsert: {
-            args: Prisma.PositionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PositionPayload>
-          }
-          aggregate: {
-            args: Prisma.PositionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePosition>
-          }
-          groupBy: {
-            args: Prisma.PositionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PositionGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PositionCountArgs<ExtArgs>
-            result: $Utils.Optional<PositionCountAggregateOutputType> | number
-          }
-        }
-      }
-      Team: {
-        payload: Prisma.$TeamPayload<ExtArgs>
-        fields: Prisma.TeamFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.TeamFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.TeamFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
-          }
-          findFirst: {
-            args: Prisma.TeamFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.TeamFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
-          }
-          findMany: {
-            args: Prisma.TeamFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>[]
-          }
-          create: {
-            args: Prisma.TeamCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
-          }
-          createMany: {
-            args: Prisma.TeamCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.TeamCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>[]
-          }
-          delete: {
-            args: Prisma.TeamDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
-          }
-          update: {
-            args: Prisma.TeamUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
-          }
-          deleteMany: {
-            args: Prisma.TeamDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.TeamUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.TeamUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>[]
-          }
-          upsert: {
-            args: Prisma.TeamUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
-          }
-          aggregate: {
-            args: Prisma.TeamAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTeam>
-          }
-          groupBy: {
-            args: Prisma.TeamGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TeamGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.TeamCountArgs<ExtArgs>
-            result: $Utils.Optional<TeamCountAggregateOutputType> | number
-          }
-        }
-      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -940,6 +719,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Folder: {
+        payload: Prisma.$FolderPayload<ExtArgs>
+        fields: Prisma.FolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>
+          }
+          findFirst: {
+            args: Prisma.FolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>
+          }
+          findMany: {
+            args: Prisma.FolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>[]
+          }
+          create: {
+            args: Prisma.FolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>
+          }
+          createMany: {
+            args: Prisma.FolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>[]
+          }
+          delete: {
+            args: Prisma.FolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>
+          }
+          update: {
+            args: Prisma.FolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.FolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.FolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FolderPayload>
+          }
+          aggregate: {
+            args: Prisma.FolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFolder>
+          }
+          groupBy: {
+            args: Prisma.FolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FolderCountArgs<ExtArgs>
+            result: $Utils.Optional<FolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      Snippet: {
+        payload: Prisma.$SnippetPayload<ExtArgs>
+        fields: Prisma.SnippetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SnippetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SnippetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>
+          }
+          findFirst: {
+            args: Prisma.SnippetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SnippetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>
+          }
+          findMany: {
+            args: Prisma.SnippetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>[]
+          }
+          create: {
+            args: Prisma.SnippetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>
+          }
+          createMany: {
+            args: Prisma.SnippetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SnippetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>[]
+          }
+          delete: {
+            args: Prisma.SnippetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>
+          }
+          update: {
+            args: Prisma.SnippetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>
+          }
+          deleteMany: {
+            args: Prisma.SnippetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SnippetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SnippetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>[]
+          }
+          upsert: {
+            args: Prisma.SnippetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SnippetPayload>
+          }
+          aggregate: {
+            args: Prisma.SnippetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSnippet>
+          }
+          groupBy: {
+            args: Prisma.SnippetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SnippetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SnippetCountArgs<ExtArgs>
+            result: $Utils.Optional<SnippetCountAggregateOutputType> | number
           }
         }
       }
@@ -1051,10 +978,9 @@ export namespace Prisma {
     comments?: runtime.SqlCommenterPlugin[]
   }
   export type GlobalOmitConfig = {
-    player?: PlayerOmit
-    position?: PositionOmit
-    team?: TeamOmit
     user?: UserOmit
+    folder?: FolderOmit
+    snippet?: SnippetOmit
   }
 
   /* Types for Logging */
@@ -1131,3321 +1057,79 @@ export namespace Prisma {
 
 
   /**
-   * Count Type PositionCountOutputType
+   * Count Type UserCountOutputType
    */
 
-  export type PositionCountOutputType = {
-    players: number
+  export type UserCountOutputType = {
+    folders: number
+    snippets: number
   }
 
-  export type PositionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    players?: boolean | PositionCountOutputTypeCountPlayersArgs
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    folders?: boolean | UserCountOutputTypeCountFoldersArgs
+    snippets?: boolean | UserCountOutputTypeCountSnippetsArgs
   }
 
   // Custom InputTypes
   /**
-   * PositionCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type PositionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PositionCountOutputType
+     * Select specific fields to fetch from the UserCountOutputType
      */
-    select?: PositionCountOutputTypeSelect<ExtArgs> | null
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * PositionCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type PositionCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlayerWhereInput
+  export type UserCountOutputTypeCountFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FolderWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSnippetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SnippetWhereInput
   }
 
 
   /**
-   * Count Type TeamCountOutputType
+   * Count Type FolderCountOutputType
    */
 
-  export type TeamCountOutputType = {
-    players: number
+  export type FolderCountOutputType = {
+    snippets: number
   }
 
-  export type TeamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    players?: boolean | TeamCountOutputTypeCountPlayersArgs
+  export type FolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    snippets?: boolean | FolderCountOutputTypeCountSnippetsArgs
   }
 
   // Custom InputTypes
   /**
-   * TeamCountOutputType without action
+   * FolderCountOutputType without action
    */
-  export type TeamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TeamCountOutputType
+     * Select specific fields to fetch from the FolderCountOutputType
      */
-    select?: TeamCountOutputTypeSelect<ExtArgs> | null
+    select?: FolderCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * TeamCountOutputType without action
+   * FolderCountOutputType without action
    */
-  export type TeamCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlayerWhereInput
+  export type FolderCountOutputTypeCountSnippetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SnippetWhereInput
   }
 
 
   /**
    * Models
    */
-
-  /**
-   * Model Player
-   */
-
-  export type AggregatePlayer = {
-    _count: PlayerCountAggregateOutputType | null
-    _avg: PlayerAvgAggregateOutputType | null
-    _sum: PlayerSumAggregateOutputType | null
-    _min: PlayerMinAggregateOutputType | null
-    _max: PlayerMaxAggregateOutputType | null
-  }
-
-  export type PlayerAvgAggregateOutputType = {
-    id: number | null
-    teamId: number | null
-    positionId: number | null
-  }
-
-  export type PlayerSumAggregateOutputType = {
-    id: number | null
-    teamId: number | null
-    positionId: number | null
-  }
-
-  export type PlayerMinAggregateOutputType = {
-    prenom: string | null
-    nom: string | null
-    id: number | null
-    teamId: number | null
-    positionId: number | null
-  }
-
-  export type PlayerMaxAggregateOutputType = {
-    prenom: string | null
-    nom: string | null
-    id: number | null
-    teamId: number | null
-    positionId: number | null
-  }
-
-  export type PlayerCountAggregateOutputType = {
-    prenom: number
-    nom: number
-    id: number
-    teamId: number
-    positionId: number
-    _all: number
-  }
-
-
-  export type PlayerAvgAggregateInputType = {
-    id?: true
-    teamId?: true
-    positionId?: true
-  }
-
-  export type PlayerSumAggregateInputType = {
-    id?: true
-    teamId?: true
-    positionId?: true
-  }
-
-  export type PlayerMinAggregateInputType = {
-    prenom?: true
-    nom?: true
-    id?: true
-    teamId?: true
-    positionId?: true
-  }
-
-  export type PlayerMaxAggregateInputType = {
-    prenom?: true
-    nom?: true
-    id?: true
-    teamId?: true
-    positionId?: true
-  }
-
-  export type PlayerCountAggregateInputType = {
-    prenom?: true
-    nom?: true
-    id?: true
-    teamId?: true
-    positionId?: true
-    _all?: true
-  }
-
-  export type PlayerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Player to aggregate.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Players
-    **/
-    _count?: true | PlayerCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PlayerAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PlayerSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PlayerMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PlayerMaxAggregateInputType
-  }
-
-  export type GetPlayerAggregateType<T extends PlayerAggregateArgs> = {
-        [P in keyof T & keyof AggregatePlayer]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePlayer[P]>
-      : GetScalarType<T[P], AggregatePlayer[P]>
-  }
-
-
-
-
-  export type PlayerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlayerWhereInput
-    orderBy?: PlayerOrderByWithAggregationInput | PlayerOrderByWithAggregationInput[]
-    by: PlayerScalarFieldEnum[] | PlayerScalarFieldEnum
-    having?: PlayerScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PlayerCountAggregateInputType | true
-    _avg?: PlayerAvgAggregateInputType
-    _sum?: PlayerSumAggregateInputType
-    _min?: PlayerMinAggregateInputType
-    _max?: PlayerMaxAggregateInputType
-  }
-
-  export type PlayerGroupByOutputType = {
-    prenom: string
-    nom: string
-    id: number
-    teamId: number
-    positionId: number
-    _count: PlayerCountAggregateOutputType | null
-    _avg: PlayerAvgAggregateOutputType | null
-    _sum: PlayerSumAggregateOutputType | null
-    _min: PlayerMinAggregateOutputType | null
-    _max: PlayerMaxAggregateOutputType | null
-  }
-
-  type GetPlayerGroupByPayload<T extends PlayerGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PlayerGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PlayerGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PlayerGroupByOutputType[P]>
-            : GetScalarType<T[P], PlayerGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PlayerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    prenom?: boolean
-    nom?: boolean
-    id?: boolean
-    teamId?: boolean
-    positionId?: boolean
-    position?: boolean | PositionDefaultArgs<ExtArgs>
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["player"]>
-
-  export type PlayerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    prenom?: boolean
-    nom?: boolean
-    id?: boolean
-    teamId?: boolean
-    positionId?: boolean
-    position?: boolean | PositionDefaultArgs<ExtArgs>
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["player"]>
-
-  export type PlayerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    prenom?: boolean
-    nom?: boolean
-    id?: boolean
-    teamId?: boolean
-    positionId?: boolean
-    position?: boolean | PositionDefaultArgs<ExtArgs>
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["player"]>
-
-  export type PlayerSelectScalar = {
-    prenom?: boolean
-    nom?: boolean
-    id?: boolean
-    teamId?: boolean
-    positionId?: boolean
-  }
-
-  export type PlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"prenom" | "nom" | "id" | "teamId" | "positionId", ExtArgs["result"]["player"]>
-  export type PlayerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    position?: boolean | PositionDefaultArgs<ExtArgs>
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }
-  export type PlayerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    position?: boolean | PositionDefaultArgs<ExtArgs>
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }
-  export type PlayerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    position?: boolean | PositionDefaultArgs<ExtArgs>
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }
-
-  export type $PlayerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Player"
-    objects: {
-      position: Prisma.$PositionPayload<ExtArgs>
-      team: Prisma.$TeamPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      prenom: string
-      nom: string
-      id: number
-      teamId: number
-      positionId: number
-    }, ExtArgs["result"]["player"]>
-    composites: {}
-  }
-
-  type PlayerGetPayload<S extends boolean | null | undefined | PlayerDefaultArgs> = $Result.GetResult<Prisma.$PlayerPayload, S>
-
-  type PlayerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PlayerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PlayerCountAggregateInputType | true
-    }
-
-  export interface PlayerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Player'], meta: { name: 'Player' } }
-    /**
-     * Find zero or one Player that matches the filter.
-     * @param {PlayerFindUniqueArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PlayerFindUniqueArgs>(args: SelectSubset<T, PlayerFindUniqueArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Player that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PlayerFindUniqueOrThrowArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PlayerFindUniqueOrThrowArgs>(args: SelectSubset<T, PlayerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Player that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerFindFirstArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PlayerFindFirstArgs>(args?: SelectSubset<T, PlayerFindFirstArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Player that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerFindFirstOrThrowArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PlayerFindFirstOrThrowArgs>(args?: SelectSubset<T, PlayerFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Players that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Players
-     * const players = await prisma.player.findMany()
-     * 
-     * // Get first 10 Players
-     * const players = await prisma.player.findMany({ take: 10 })
-     * 
-     * // Only select the `prenom`
-     * const playerWithPrenomOnly = await prisma.player.findMany({ select: { prenom: true } })
-     * 
-     */
-    findMany<T extends PlayerFindManyArgs>(args?: SelectSubset<T, PlayerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Player.
-     * @param {PlayerCreateArgs} args - Arguments to create a Player.
-     * @example
-     * // Create one Player
-     * const Player = await prisma.player.create({
-     *   data: {
-     *     // ... data to create a Player
-     *   }
-     * })
-     * 
-     */
-    create<T extends PlayerCreateArgs>(args: SelectSubset<T, PlayerCreateArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Players.
-     * @param {PlayerCreateManyArgs} args - Arguments to create many Players.
-     * @example
-     * // Create many Players
-     * const player = await prisma.player.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PlayerCreateManyArgs>(args?: SelectSubset<T, PlayerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Players and returns the data saved in the database.
-     * @param {PlayerCreateManyAndReturnArgs} args - Arguments to create many Players.
-     * @example
-     * // Create many Players
-     * const player = await prisma.player.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Players and only return the `prenom`
-     * const playerWithPrenomOnly = await prisma.player.createManyAndReturn({
-     *   select: { prenom: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PlayerCreateManyAndReturnArgs>(args?: SelectSubset<T, PlayerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Player.
-     * @param {PlayerDeleteArgs} args - Arguments to delete one Player.
-     * @example
-     * // Delete one Player
-     * const Player = await prisma.player.delete({
-     *   where: {
-     *     // ... filter to delete one Player
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PlayerDeleteArgs>(args: SelectSubset<T, PlayerDeleteArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Player.
-     * @param {PlayerUpdateArgs} args - Arguments to update one Player.
-     * @example
-     * // Update one Player
-     * const player = await prisma.player.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PlayerUpdateArgs>(args: SelectSubset<T, PlayerUpdateArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Players.
-     * @param {PlayerDeleteManyArgs} args - Arguments to filter Players to delete.
-     * @example
-     * // Delete a few Players
-     * const { count } = await prisma.player.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PlayerDeleteManyArgs>(args?: SelectSubset<T, PlayerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Players.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Players
-     * const player = await prisma.player.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PlayerUpdateManyArgs>(args: SelectSubset<T, PlayerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Players and returns the data updated in the database.
-     * @param {PlayerUpdateManyAndReturnArgs} args - Arguments to update many Players.
-     * @example
-     * // Update many Players
-     * const player = await prisma.player.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Players and only return the `prenom`
-     * const playerWithPrenomOnly = await prisma.player.updateManyAndReturn({
-     *   select: { prenom: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PlayerUpdateManyAndReturnArgs>(args: SelectSubset<T, PlayerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Player.
-     * @param {PlayerUpsertArgs} args - Arguments to update or create a Player.
-     * @example
-     * // Update or create a Player
-     * const player = await prisma.player.upsert({
-     *   create: {
-     *     // ... data to create a Player
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Player we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PlayerUpsertArgs>(args: SelectSubset<T, PlayerUpsertArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Players.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerCountArgs} args - Arguments to filter Players to count.
-     * @example
-     * // Count the number of Players
-     * const count = await prisma.player.count({
-     *   where: {
-     *     // ... the filter for the Players we want to count
-     *   }
-     * })
-    **/
-    count<T extends PlayerCountArgs>(
-      args?: Subset<T, PlayerCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PlayerCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Player.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PlayerAggregateArgs>(args: Subset<T, PlayerAggregateArgs>): Prisma.PrismaPromise<GetPlayerAggregateType<T>>
-
-    /**
-     * Group by Player.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PlayerGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PlayerGroupByArgs['orderBy'] }
-        : { orderBy?: PlayerGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PlayerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Player model
-   */
-  readonly fields: PlayerFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Player.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PlayerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    position<T extends PositionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PositionDefaultArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Player model
-   */
-  interface PlayerFieldRefs {
-    readonly prenom: FieldRef<"Player", 'String'>
-    readonly nom: FieldRef<"Player", 'String'>
-    readonly id: FieldRef<"Player", 'Int'>
-    readonly teamId: FieldRef<"Player", 'Int'>
-    readonly positionId: FieldRef<"Player", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Player findUnique
-   */
-  export type PlayerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player findUniqueOrThrow
-   */
-  export type PlayerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player findFirst
-   */
-  export type PlayerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Players.
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Players.
-     */
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Player findFirstOrThrow
-   */
-  export type PlayerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Players.
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Players.
-     */
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Player findMany
-   */
-  export type PlayerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Players to fetch.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Players.
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Player create
-   */
-  export type PlayerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Player.
-     */
-    data: XOR<PlayerCreateInput, PlayerUncheckedCreateInput>
-  }
-
-  /**
-   * Player createMany
-   */
-  export type PlayerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Players.
-     */
-    data: PlayerCreateManyInput | PlayerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Player createManyAndReturn
-   */
-  export type PlayerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * The data used to create many Players.
-     */
-    data: PlayerCreateManyInput | PlayerCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Player update
-   */
-  export type PlayerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Player.
-     */
-    data: XOR<PlayerUpdateInput, PlayerUncheckedUpdateInput>
-    /**
-     * Choose, which Player to update.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player updateMany
-   */
-  export type PlayerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Players.
-     */
-    data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput>
-    /**
-     * Filter which Players to update
-     */
-    where?: PlayerWhereInput
-    /**
-     * Limit how many Players to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Player updateManyAndReturn
-   */
-  export type PlayerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * The data used to update Players.
-     */
-    data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput>
-    /**
-     * Filter which Players to update
-     */
-    where?: PlayerWhereInput
-    /**
-     * Limit how many Players to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Player upsert
-   */
-  export type PlayerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Player to update in case it exists.
-     */
-    where: PlayerWhereUniqueInput
-    /**
-     * In case the Player found by the `where` argument doesn't exist, create a new Player with this data.
-     */
-    create: XOR<PlayerCreateInput, PlayerUncheckedCreateInput>
-    /**
-     * In case the Player was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PlayerUpdateInput, PlayerUncheckedUpdateInput>
-  }
-
-  /**
-   * Player delete
-   */
-  export type PlayerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter which Player to delete.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player deleteMany
-   */
-  export type PlayerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Players to delete
-     */
-    where?: PlayerWhereInput
-    /**
-     * Limit how many Players to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Player without action
-   */
-  export type PlayerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Position
-   */
-
-  export type AggregatePosition = {
-    _count: PositionCountAggregateOutputType | null
-    _avg: PositionAvgAggregateOutputType | null
-    _sum: PositionSumAggregateOutputType | null
-    _min: PositionMinAggregateOutputType | null
-    _max: PositionMaxAggregateOutputType | null
-  }
-
-  export type PositionAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type PositionSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type PositionMinAggregateOutputType = {
-    nom: string | null
-    id: number | null
-  }
-
-  export type PositionMaxAggregateOutputType = {
-    nom: string | null
-    id: number | null
-  }
-
-  export type PositionCountAggregateOutputType = {
-    nom: number
-    id: number
-    _all: number
-  }
-
-
-  export type PositionAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type PositionSumAggregateInputType = {
-    id?: true
-  }
-
-  export type PositionMinAggregateInputType = {
-    nom?: true
-    id?: true
-  }
-
-  export type PositionMaxAggregateInputType = {
-    nom?: true
-    id?: true
-  }
-
-  export type PositionCountAggregateInputType = {
-    nom?: true
-    id?: true
-    _all?: true
-  }
-
-  export type PositionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Position to aggregate.
-     */
-    where?: PositionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Positions to fetch.
-     */
-    orderBy?: PositionOrderByWithRelationInput | PositionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PositionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Positions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Positions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Positions
-    **/
-    _count?: true | PositionCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PositionAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PositionSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PositionMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PositionMaxAggregateInputType
-  }
-
-  export type GetPositionAggregateType<T extends PositionAggregateArgs> = {
-        [P in keyof T & keyof AggregatePosition]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePosition[P]>
-      : GetScalarType<T[P], AggregatePosition[P]>
-  }
-
-
-
-
-  export type PositionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PositionWhereInput
-    orderBy?: PositionOrderByWithAggregationInput | PositionOrderByWithAggregationInput[]
-    by: PositionScalarFieldEnum[] | PositionScalarFieldEnum
-    having?: PositionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PositionCountAggregateInputType | true
-    _avg?: PositionAvgAggregateInputType
-    _sum?: PositionSumAggregateInputType
-    _min?: PositionMinAggregateInputType
-    _max?: PositionMaxAggregateInputType
-  }
-
-  export type PositionGroupByOutputType = {
-    nom: string
-    id: number
-    _count: PositionCountAggregateOutputType | null
-    _avg: PositionAvgAggregateOutputType | null
-    _sum: PositionSumAggregateOutputType | null
-    _min: PositionMinAggregateOutputType | null
-    _max: PositionMaxAggregateOutputType | null
-  }
-
-  type GetPositionGroupByPayload<T extends PositionGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PositionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PositionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PositionGroupByOutputType[P]>
-            : GetScalarType<T[P], PositionGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PositionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nom?: boolean
-    id?: boolean
-    players?: boolean | Position$playersArgs<ExtArgs>
-    _count?: boolean | PositionCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["position"]>
-
-  export type PositionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nom?: boolean
-    id?: boolean
-  }, ExtArgs["result"]["position"]>
-
-  export type PositionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nom?: boolean
-    id?: boolean
-  }, ExtArgs["result"]["position"]>
-
-  export type PositionSelectScalar = {
-    nom?: boolean
-    id?: boolean
-  }
-
-  export type PositionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nom" | "id", ExtArgs["result"]["position"]>
-  export type PositionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    players?: boolean | Position$playersArgs<ExtArgs>
-    _count?: boolean | PositionCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type PositionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type PositionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $PositionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Position"
-    objects: {
-      players: Prisma.$PlayerPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      nom: string
-      id: number
-    }, ExtArgs["result"]["position"]>
-    composites: {}
-  }
-
-  type PositionGetPayload<S extends boolean | null | undefined | PositionDefaultArgs> = $Result.GetResult<Prisma.$PositionPayload, S>
-
-  type PositionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PositionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PositionCountAggregateInputType | true
-    }
-
-  export interface PositionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Position'], meta: { name: 'Position' } }
-    /**
-     * Find zero or one Position that matches the filter.
-     * @param {PositionFindUniqueArgs} args - Arguments to find a Position
-     * @example
-     * // Get one Position
-     * const position = await prisma.position.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PositionFindUniqueArgs>(args: SelectSubset<T, PositionFindUniqueArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Position that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PositionFindUniqueOrThrowArgs} args - Arguments to find a Position
-     * @example
-     * // Get one Position
-     * const position = await prisma.position.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PositionFindUniqueOrThrowArgs>(args: SelectSubset<T, PositionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Position that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PositionFindFirstArgs} args - Arguments to find a Position
-     * @example
-     * // Get one Position
-     * const position = await prisma.position.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PositionFindFirstArgs>(args?: SelectSubset<T, PositionFindFirstArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Position that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PositionFindFirstOrThrowArgs} args - Arguments to find a Position
-     * @example
-     * // Get one Position
-     * const position = await prisma.position.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PositionFindFirstOrThrowArgs>(args?: SelectSubset<T, PositionFindFirstOrThrowArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Positions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PositionFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Positions
-     * const positions = await prisma.position.findMany()
-     * 
-     * // Get first 10 Positions
-     * const positions = await prisma.position.findMany({ take: 10 })
-     * 
-     * // Only select the `nom`
-     * const positionWithNomOnly = await prisma.position.findMany({ select: { nom: true } })
-     * 
-     */
-    findMany<T extends PositionFindManyArgs>(args?: SelectSubset<T, PositionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Position.
-     * @param {PositionCreateArgs} args - Arguments to create a Position.
-     * @example
-     * // Create one Position
-     * const Position = await prisma.position.create({
-     *   data: {
-     *     // ... data to create a Position
-     *   }
-     * })
-     * 
-     */
-    create<T extends PositionCreateArgs>(args: SelectSubset<T, PositionCreateArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Positions.
-     * @param {PositionCreateManyArgs} args - Arguments to create many Positions.
-     * @example
-     * // Create many Positions
-     * const position = await prisma.position.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PositionCreateManyArgs>(args?: SelectSubset<T, PositionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Positions and returns the data saved in the database.
-     * @param {PositionCreateManyAndReturnArgs} args - Arguments to create many Positions.
-     * @example
-     * // Create many Positions
-     * const position = await prisma.position.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Positions and only return the `nom`
-     * const positionWithNomOnly = await prisma.position.createManyAndReturn({
-     *   select: { nom: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PositionCreateManyAndReturnArgs>(args?: SelectSubset<T, PositionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Position.
-     * @param {PositionDeleteArgs} args - Arguments to delete one Position.
-     * @example
-     * // Delete one Position
-     * const Position = await prisma.position.delete({
-     *   where: {
-     *     // ... filter to delete one Position
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PositionDeleteArgs>(args: SelectSubset<T, PositionDeleteArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Position.
-     * @param {PositionUpdateArgs} args - Arguments to update one Position.
-     * @example
-     * // Update one Position
-     * const position = await prisma.position.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PositionUpdateArgs>(args: SelectSubset<T, PositionUpdateArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Positions.
-     * @param {PositionDeleteManyArgs} args - Arguments to filter Positions to delete.
-     * @example
-     * // Delete a few Positions
-     * const { count } = await prisma.position.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PositionDeleteManyArgs>(args?: SelectSubset<T, PositionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Positions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PositionUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Positions
-     * const position = await prisma.position.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PositionUpdateManyArgs>(args: SelectSubset<T, PositionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Positions and returns the data updated in the database.
-     * @param {PositionUpdateManyAndReturnArgs} args - Arguments to update many Positions.
-     * @example
-     * // Update many Positions
-     * const position = await prisma.position.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Positions and only return the `nom`
-     * const positionWithNomOnly = await prisma.position.updateManyAndReturn({
-     *   select: { nom: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PositionUpdateManyAndReturnArgs>(args: SelectSubset<T, PositionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Position.
-     * @param {PositionUpsertArgs} args - Arguments to update or create a Position.
-     * @example
-     * // Update or create a Position
-     * const position = await prisma.position.upsert({
-     *   create: {
-     *     // ... data to create a Position
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Position we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PositionUpsertArgs>(args: SelectSubset<T, PositionUpsertArgs<ExtArgs>>): Prisma__PositionClient<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Positions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PositionCountArgs} args - Arguments to filter Positions to count.
-     * @example
-     * // Count the number of Positions
-     * const count = await prisma.position.count({
-     *   where: {
-     *     // ... the filter for the Positions we want to count
-     *   }
-     * })
-    **/
-    count<T extends PositionCountArgs>(
-      args?: Subset<T, PositionCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PositionCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Position.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PositionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PositionAggregateArgs>(args: Subset<T, PositionAggregateArgs>): Prisma.PrismaPromise<GetPositionAggregateType<T>>
-
-    /**
-     * Group by Position.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PositionGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PositionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PositionGroupByArgs['orderBy'] }
-        : { orderBy?: PositionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PositionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPositionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Position model
-   */
-  readonly fields: PositionFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Position.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PositionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    players<T extends Position$playersArgs<ExtArgs> = {}>(args?: Subset<T, Position$playersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Position model
-   */
-  interface PositionFieldRefs {
-    readonly nom: FieldRef<"Position", 'String'>
-    readonly id: FieldRef<"Position", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Position findUnique
-   */
-  export type PositionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * Filter, which Position to fetch.
-     */
-    where: PositionWhereUniqueInput
-  }
-
-  /**
-   * Position findUniqueOrThrow
-   */
-  export type PositionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * Filter, which Position to fetch.
-     */
-    where: PositionWhereUniqueInput
-  }
-
-  /**
-   * Position findFirst
-   */
-  export type PositionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * Filter, which Position to fetch.
-     */
-    where?: PositionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Positions to fetch.
-     */
-    orderBy?: PositionOrderByWithRelationInput | PositionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Positions.
-     */
-    cursor?: PositionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Positions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Positions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Positions.
-     */
-    distinct?: PositionScalarFieldEnum | PositionScalarFieldEnum[]
-  }
-
-  /**
-   * Position findFirstOrThrow
-   */
-  export type PositionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * Filter, which Position to fetch.
-     */
-    where?: PositionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Positions to fetch.
-     */
-    orderBy?: PositionOrderByWithRelationInput | PositionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Positions.
-     */
-    cursor?: PositionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Positions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Positions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Positions.
-     */
-    distinct?: PositionScalarFieldEnum | PositionScalarFieldEnum[]
-  }
-
-  /**
-   * Position findMany
-   */
-  export type PositionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * Filter, which Positions to fetch.
-     */
-    where?: PositionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Positions to fetch.
-     */
-    orderBy?: PositionOrderByWithRelationInput | PositionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Positions.
-     */
-    cursor?: PositionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Positions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Positions.
-     */
-    skip?: number
-    distinct?: PositionScalarFieldEnum | PositionScalarFieldEnum[]
-  }
-
-  /**
-   * Position create
-   */
-  export type PositionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Position.
-     */
-    data: XOR<PositionCreateInput, PositionUncheckedCreateInput>
-  }
-
-  /**
-   * Position createMany
-   */
-  export type PositionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Positions.
-     */
-    data: PositionCreateManyInput | PositionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Position createManyAndReturn
-   */
-  export type PositionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * The data used to create many Positions.
-     */
-    data: PositionCreateManyInput | PositionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Position update
-   */
-  export type PositionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Position.
-     */
-    data: XOR<PositionUpdateInput, PositionUncheckedUpdateInput>
-    /**
-     * Choose, which Position to update.
-     */
-    where: PositionWhereUniqueInput
-  }
-
-  /**
-   * Position updateMany
-   */
-  export type PositionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Positions.
-     */
-    data: XOR<PositionUpdateManyMutationInput, PositionUncheckedUpdateManyInput>
-    /**
-     * Filter which Positions to update
-     */
-    where?: PositionWhereInput
-    /**
-     * Limit how many Positions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Position updateManyAndReturn
-   */
-  export type PositionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * The data used to update Positions.
-     */
-    data: XOR<PositionUpdateManyMutationInput, PositionUncheckedUpdateManyInput>
-    /**
-     * Filter which Positions to update
-     */
-    where?: PositionWhereInput
-    /**
-     * Limit how many Positions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Position upsert
-   */
-  export type PositionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Position to update in case it exists.
-     */
-    where: PositionWhereUniqueInput
-    /**
-     * In case the Position found by the `where` argument doesn't exist, create a new Position with this data.
-     */
-    create: XOR<PositionCreateInput, PositionUncheckedCreateInput>
-    /**
-     * In case the Position was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PositionUpdateInput, PositionUncheckedUpdateInput>
-  }
-
-  /**
-   * Position delete
-   */
-  export type PositionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-    /**
-     * Filter which Position to delete.
-     */
-    where: PositionWhereUniqueInput
-  }
-
-  /**
-   * Position deleteMany
-   */
-  export type PositionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Positions to delete
-     */
-    where?: PositionWhereInput
-    /**
-     * Limit how many Positions to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Position.players
-   */
-  export type Position$playersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    where?: PlayerWhereInput
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    cursor?: PlayerWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Position without action
-   */
-  export type PositionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Position
-     */
-    select?: PositionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Position
-     */
-    omit?: PositionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PositionInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Team
-   */
-
-  export type AggregateTeam = {
-    _count: TeamCountAggregateOutputType | null
-    _avg: TeamAvgAggregateOutputType | null
-    _sum: TeamSumAggregateOutputType | null
-    _min: TeamMinAggregateOutputType | null
-    _max: TeamMaxAggregateOutputType | null
-  }
-
-  export type TeamAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type TeamSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type TeamMinAggregateOutputType = {
-    nom: string | null
-    pays: string | null
-    id: number | null
-  }
-
-  export type TeamMaxAggregateOutputType = {
-    nom: string | null
-    pays: string | null
-    id: number | null
-  }
-
-  export type TeamCountAggregateOutputType = {
-    nom: number
-    pays: number
-    id: number
-    _all: number
-  }
-
-
-  export type TeamAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type TeamSumAggregateInputType = {
-    id?: true
-  }
-
-  export type TeamMinAggregateInputType = {
-    nom?: true
-    pays?: true
-    id?: true
-  }
-
-  export type TeamMaxAggregateInputType = {
-    nom?: true
-    pays?: true
-    id?: true
-  }
-
-  export type TeamCountAggregateInputType = {
-    nom?: true
-    pays?: true
-    id?: true
-    _all?: true
-  }
-
-  export type TeamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Team to aggregate.
-     */
-    where?: TeamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Teams to fetch.
-     */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: TeamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Teams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Teams.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Teams
-    **/
-    _count?: true | TeamCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: TeamAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: TeamSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: TeamMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: TeamMaxAggregateInputType
-  }
-
-  export type GetTeamAggregateType<T extends TeamAggregateArgs> = {
-        [P in keyof T & keyof AggregateTeam]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTeam[P]>
-      : GetScalarType<T[P], AggregateTeam[P]>
-  }
-
-
-
-
-  export type TeamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TeamWhereInput
-    orderBy?: TeamOrderByWithAggregationInput | TeamOrderByWithAggregationInput[]
-    by: TeamScalarFieldEnum[] | TeamScalarFieldEnum
-    having?: TeamScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TeamCountAggregateInputType | true
-    _avg?: TeamAvgAggregateInputType
-    _sum?: TeamSumAggregateInputType
-    _min?: TeamMinAggregateInputType
-    _max?: TeamMaxAggregateInputType
-  }
-
-  export type TeamGroupByOutputType = {
-    nom: string
-    pays: string | null
-    id: number
-    _count: TeamCountAggregateOutputType | null
-    _avg: TeamAvgAggregateOutputType | null
-    _sum: TeamSumAggregateOutputType | null
-    _min: TeamMinAggregateOutputType | null
-    _max: TeamMaxAggregateOutputType | null
-  }
-
-  type GetTeamGroupByPayload<T extends TeamGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TeamGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TeamGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TeamGroupByOutputType[P]>
-            : GetScalarType<T[P], TeamGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type TeamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nom?: boolean
-    pays?: boolean
-    id?: boolean
-    players?: boolean | Team$playersArgs<ExtArgs>
-    _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["team"]>
-
-  export type TeamSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nom?: boolean
-    pays?: boolean
-    id?: boolean
-  }, ExtArgs["result"]["team"]>
-
-  export type TeamSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nom?: boolean
-    pays?: boolean
-    id?: boolean
-  }, ExtArgs["result"]["team"]>
-
-  export type TeamSelectScalar = {
-    nom?: boolean
-    pays?: boolean
-    id?: boolean
-  }
-
-  export type TeamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nom" | "pays" | "id", ExtArgs["result"]["team"]>
-  export type TeamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    players?: boolean | Team$playersArgs<ExtArgs>
-    _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type TeamIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type TeamIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $TeamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Team"
-    objects: {
-      players: Prisma.$PlayerPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      nom: string
-      pays: string | null
-      id: number
-    }, ExtArgs["result"]["team"]>
-    composites: {}
-  }
-
-  type TeamGetPayload<S extends boolean | null | undefined | TeamDefaultArgs> = $Result.GetResult<Prisma.$TeamPayload, S>
-
-  type TeamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TeamFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TeamCountAggregateInputType | true
-    }
-
-  export interface TeamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Team'], meta: { name: 'Team' } }
-    /**
-     * Find zero or one Team that matches the filter.
-     * @param {TeamFindUniqueArgs} args - Arguments to find a Team
-     * @example
-     * // Get one Team
-     * const team = await prisma.team.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends TeamFindUniqueArgs>(args: SelectSubset<T, TeamFindUniqueArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Team that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {TeamFindUniqueOrThrowArgs} args - Arguments to find a Team
-     * @example
-     * // Get one Team
-     * const team = await prisma.team.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends TeamFindUniqueOrThrowArgs>(args: SelectSubset<T, TeamFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Team that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamFindFirstArgs} args - Arguments to find a Team
-     * @example
-     * // Get one Team
-     * const team = await prisma.team.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends TeamFindFirstArgs>(args?: SelectSubset<T, TeamFindFirstArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Team that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamFindFirstOrThrowArgs} args - Arguments to find a Team
-     * @example
-     * // Get one Team
-     * const team = await prisma.team.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends TeamFindFirstOrThrowArgs>(args?: SelectSubset<T, TeamFindFirstOrThrowArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Teams that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Teams
-     * const teams = await prisma.team.findMany()
-     * 
-     * // Get first 10 Teams
-     * const teams = await prisma.team.findMany({ take: 10 })
-     * 
-     * // Only select the `nom`
-     * const teamWithNomOnly = await prisma.team.findMany({ select: { nom: true } })
-     * 
-     */
-    findMany<T extends TeamFindManyArgs>(args?: SelectSubset<T, TeamFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Team.
-     * @param {TeamCreateArgs} args - Arguments to create a Team.
-     * @example
-     * // Create one Team
-     * const Team = await prisma.team.create({
-     *   data: {
-     *     // ... data to create a Team
-     *   }
-     * })
-     * 
-     */
-    create<T extends TeamCreateArgs>(args: SelectSubset<T, TeamCreateArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Teams.
-     * @param {TeamCreateManyArgs} args - Arguments to create many Teams.
-     * @example
-     * // Create many Teams
-     * const team = await prisma.team.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends TeamCreateManyArgs>(args?: SelectSubset<T, TeamCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Teams and returns the data saved in the database.
-     * @param {TeamCreateManyAndReturnArgs} args - Arguments to create many Teams.
-     * @example
-     * // Create many Teams
-     * const team = await prisma.team.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Teams and only return the `nom`
-     * const teamWithNomOnly = await prisma.team.createManyAndReturn({
-     *   select: { nom: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends TeamCreateManyAndReturnArgs>(args?: SelectSubset<T, TeamCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Team.
-     * @param {TeamDeleteArgs} args - Arguments to delete one Team.
-     * @example
-     * // Delete one Team
-     * const Team = await prisma.team.delete({
-     *   where: {
-     *     // ... filter to delete one Team
-     *   }
-     * })
-     * 
-     */
-    delete<T extends TeamDeleteArgs>(args: SelectSubset<T, TeamDeleteArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Team.
-     * @param {TeamUpdateArgs} args - Arguments to update one Team.
-     * @example
-     * // Update one Team
-     * const team = await prisma.team.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends TeamUpdateArgs>(args: SelectSubset<T, TeamUpdateArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Teams.
-     * @param {TeamDeleteManyArgs} args - Arguments to filter Teams to delete.
-     * @example
-     * // Delete a few Teams
-     * const { count } = await prisma.team.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends TeamDeleteManyArgs>(args?: SelectSubset<T, TeamDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Teams.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Teams
-     * const team = await prisma.team.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends TeamUpdateManyArgs>(args: SelectSubset<T, TeamUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Teams and returns the data updated in the database.
-     * @param {TeamUpdateManyAndReturnArgs} args - Arguments to update many Teams.
-     * @example
-     * // Update many Teams
-     * const team = await prisma.team.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Teams and only return the `nom`
-     * const teamWithNomOnly = await prisma.team.updateManyAndReturn({
-     *   select: { nom: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends TeamUpdateManyAndReturnArgs>(args: SelectSubset<T, TeamUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Team.
-     * @param {TeamUpsertArgs} args - Arguments to update or create a Team.
-     * @example
-     * // Update or create a Team
-     * const team = await prisma.team.upsert({
-     *   create: {
-     *     // ... data to create a Team
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Team we want to update
-     *   }
-     * })
-     */
-    upsert<T extends TeamUpsertArgs>(args: SelectSubset<T, TeamUpsertArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Teams.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamCountArgs} args - Arguments to filter Teams to count.
-     * @example
-     * // Count the number of Teams
-     * const count = await prisma.team.count({
-     *   where: {
-     *     // ... the filter for the Teams we want to count
-     *   }
-     * })
-    **/
-    count<T extends TeamCountArgs>(
-      args?: Subset<T, TeamCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], TeamCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Team.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends TeamAggregateArgs>(args: Subset<T, TeamAggregateArgs>): Prisma.PrismaPromise<GetTeamAggregateType<T>>
-
-    /**
-     * Group by Team.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends TeamGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TeamGroupByArgs['orderBy'] }
-        : { orderBy?: TeamGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TeamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTeamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Team model
-   */
-  readonly fields: TeamFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Team.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__TeamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    players<T extends Team$playersArgs<ExtArgs> = {}>(args?: Subset<T, Team$playersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Team model
-   */
-  interface TeamFieldRefs {
-    readonly nom: FieldRef<"Team", 'String'>
-    readonly pays: FieldRef<"Team", 'String'>
-    readonly id: FieldRef<"Team", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Team findUnique
-   */
-  export type TeamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * Filter, which Team to fetch.
-     */
-    where: TeamWhereUniqueInput
-  }
-
-  /**
-   * Team findUniqueOrThrow
-   */
-  export type TeamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * Filter, which Team to fetch.
-     */
-    where: TeamWhereUniqueInput
-  }
-
-  /**
-   * Team findFirst
-   */
-  export type TeamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * Filter, which Team to fetch.
-     */
-    where?: TeamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Teams to fetch.
-     */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Teams.
-     */
-    cursor?: TeamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Teams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Teams.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Teams.
-     */
-    distinct?: TeamScalarFieldEnum | TeamScalarFieldEnum[]
-  }
-
-  /**
-   * Team findFirstOrThrow
-   */
-  export type TeamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * Filter, which Team to fetch.
-     */
-    where?: TeamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Teams to fetch.
-     */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Teams.
-     */
-    cursor?: TeamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Teams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Teams.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Teams.
-     */
-    distinct?: TeamScalarFieldEnum | TeamScalarFieldEnum[]
-  }
-
-  /**
-   * Team findMany
-   */
-  export type TeamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * Filter, which Teams to fetch.
-     */
-    where?: TeamWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Teams to fetch.
-     */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Teams.
-     */
-    cursor?: TeamWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Teams from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Teams.
-     */
-    skip?: number
-    distinct?: TeamScalarFieldEnum | TeamScalarFieldEnum[]
-  }
-
-  /**
-   * Team create
-   */
-  export type TeamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Team.
-     */
-    data: XOR<TeamCreateInput, TeamUncheckedCreateInput>
-  }
-
-  /**
-   * Team createMany
-   */
-  export type TeamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Teams.
-     */
-    data: TeamCreateManyInput | TeamCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Team createManyAndReturn
-   */
-  export type TeamCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * The data used to create many Teams.
-     */
-    data: TeamCreateManyInput | TeamCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Team update
-   */
-  export type TeamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Team.
-     */
-    data: XOR<TeamUpdateInput, TeamUncheckedUpdateInput>
-    /**
-     * Choose, which Team to update.
-     */
-    where: TeamWhereUniqueInput
-  }
-
-  /**
-   * Team updateMany
-   */
-  export type TeamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Teams.
-     */
-    data: XOR<TeamUpdateManyMutationInput, TeamUncheckedUpdateManyInput>
-    /**
-     * Filter which Teams to update
-     */
-    where?: TeamWhereInput
-    /**
-     * Limit how many Teams to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Team updateManyAndReturn
-   */
-  export type TeamUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * The data used to update Teams.
-     */
-    data: XOR<TeamUpdateManyMutationInput, TeamUncheckedUpdateManyInput>
-    /**
-     * Filter which Teams to update
-     */
-    where?: TeamWhereInput
-    /**
-     * Limit how many Teams to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Team upsert
-   */
-  export type TeamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Team to update in case it exists.
-     */
-    where: TeamWhereUniqueInput
-    /**
-     * In case the Team found by the `where` argument doesn't exist, create a new Team with this data.
-     */
-    create: XOR<TeamCreateInput, TeamUncheckedCreateInput>
-    /**
-     * In case the Team was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TeamUpdateInput, TeamUncheckedUpdateInput>
-  }
-
-  /**
-   * Team delete
-   */
-  export type TeamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-    /**
-     * Filter which Team to delete.
-     */
-    where: TeamWhereUniqueInput
-  }
-
-  /**
-   * Team deleteMany
-   */
-  export type TeamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Teams to delete
-     */
-    where?: TeamWhereInput
-    /**
-     * Limit how many Teams to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Team.players
-   */
-  export type Team$playersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    where?: PlayerWhereInput
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    cursor?: PlayerWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Team without action
-   */
-  export type TeamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
-  }
-
 
   /**
    * Model User
@@ -4468,30 +1152,30 @@ export namespace Prisma {
   }
 
   export type UserMinAggregateOutputType = {
-    id: number | null
-    prenom: string | null
-    nom: string | null
     email: string | null
     password: string | null
     createdAt: Date | null
+    id: number | null
+    nomUtilisateur: string | null
+    role: $Enums.Role | null
   }
 
   export type UserMaxAggregateOutputType = {
-    id: number | null
-    prenom: string | null
-    nom: string | null
     email: string | null
     password: string | null
     createdAt: Date | null
+    id: number | null
+    nomUtilisateur: string | null
+    role: $Enums.Role | null
   }
 
   export type UserCountAggregateOutputType = {
-    id: number
-    prenom: number
-    nom: number
     email: number
     password: number
     createdAt: number
+    id: number
+    nomUtilisateur: number
+    role: number
     _all: number
   }
 
@@ -4505,30 +1189,30 @@ export namespace Prisma {
   }
 
   export type UserMinAggregateInputType = {
-    id?: true
-    prenom?: true
-    nom?: true
     email?: true
     password?: true
     createdAt?: true
+    id?: true
+    nomUtilisateur?: true
+    role?: true
   }
 
   export type UserMaxAggregateInputType = {
-    id?: true
-    prenom?: true
-    nom?: true
     email?: true
     password?: true
     createdAt?: true
+    id?: true
+    nomUtilisateur?: true
+    role?: true
   }
 
   export type UserCountAggregateInputType = {
-    id?: true
-    prenom?: true
-    nom?: true
     email?: true
     password?: true
     createdAt?: true
+    id?: true
+    nomUtilisateur?: true
+    role?: true
     _all?: true
   }
 
@@ -4619,12 +1303,12 @@ export namespace Prisma {
   }
 
   export type UserGroupByOutputType = {
-    id: number
-    prenom: string
-    nom: string
     email: string
     password: string
     createdAt: Date
+    id: number
+    nomUtilisateur: string
+    role: $Enums.Role
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -4647,53 +1331,66 @@ export namespace Prisma {
 
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    prenom?: boolean
-    nom?: boolean
     email?: boolean
     password?: boolean
     createdAt?: boolean
+    id?: boolean
+    nomUtilisateur?: boolean
+    role?: boolean
+    folders?: boolean | User$foldersArgs<ExtArgs>
+    snippets?: boolean | User$snippetsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    prenom?: boolean
-    nom?: boolean
     email?: boolean
     password?: boolean
     createdAt?: boolean
+    id?: boolean
+    nomUtilisateur?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    prenom?: boolean
-    nom?: boolean
     email?: boolean
     password?: boolean
     createdAt?: boolean
+    id?: boolean
+    nomUtilisateur?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
-    id?: boolean
-    prenom?: boolean
-    nom?: boolean
     email?: boolean
     password?: boolean
     createdAt?: boolean
+    id?: boolean
+    nomUtilisateur?: boolean
+    role?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "prenom" | "nom" | "email" | "password" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"email" | "password" | "createdAt" | "id" | "nomUtilisateur" | "role", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    folders?: boolean | User$foldersArgs<ExtArgs>
+    snippets?: boolean | User$snippetsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      folders: Prisma.$FolderPayload<ExtArgs>[]
+      snippets: Prisma.$SnippetPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      prenom: string
-      nom: string
       email: string
       password: string
       createdAt: Date
+      id: number
+      nomUtilisateur: string
+      role: $Enums.Role
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -4777,8 +1474,8 @@ export namespace Prisma {
      * // Get first 10 Users
      * const users = await prisma.user.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * // Only select the `email`
+     * const userWithEmailOnly = await prisma.user.findMany({ select: { email: true } })
      * 
      */
     findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -4822,9 +1519,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many Users and only return the `email`
+     * const userWithEmailOnly = await prisma.user.createManyAndReturn({
+     *   select: { email: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -4913,9 +1610,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more Users and only return the `email`
+     * const userWithEmailOnly = await prisma.user.updateManyAndReturn({
+     *   select: { email: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5088,6 +1785,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    folders<T extends User$foldersArgs<ExtArgs> = {}>(args?: Subset<T, User$foldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    snippets<T extends User$snippetsArgs<ExtArgs> = {}>(args?: Subset<T, User$snippetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5117,12 +1816,12 @@ export namespace Prisma {
    * Fields of the User model
    */
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
-    readonly prenom: FieldRef<"User", 'String'>
-    readonly nom: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly id: FieldRef<"User", 'Int'>
+    readonly nomUtilisateur: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'Role'>
   }
     
 
@@ -5139,6 +1838,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -5158,6 +1861,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -5175,6 +1882,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -5224,6 +1935,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -5272,6 +1987,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -5314,6 +2033,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -5362,6 +2085,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -5429,6 +2156,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -5455,6 +2186,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -5475,6 +2210,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.folders
+   */
+  export type User$foldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    where?: FolderWhereInput
+    orderBy?: FolderOrderByWithRelationInput | FolderOrderByWithRelationInput[]
+    cursor?: FolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FolderScalarFieldEnum | FolderScalarFieldEnum[]
+  }
+
+  /**
+   * User.snippets
+   */
+  export type User$snippetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    where?: SnippetWhereInput
+    orderBy?: SnippetOrderByWithRelationInput | SnippetOrderByWithRelationInput[]
+    cursor?: SnippetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SnippetScalarFieldEnum | SnippetScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5486,6 +2269,2328 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Folder
+   */
+
+  export type AggregateFolder = {
+    _count: FolderCountAggregateOutputType | null
+    _avg: FolderAvgAggregateOutputType | null
+    _sum: FolderSumAggregateOutputType | null
+    _min: FolderMinAggregateOutputType | null
+    _max: FolderMaxAggregateOutputType | null
+  }
+
+  export type FolderAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type FolderSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type FolderMinAggregateOutputType = {
+    id: number | null
+    nom: string | null
+    couleur: string | null
+    createdAt: Date | null
+    userId: number | null
+  }
+
+  export type FolderMaxAggregateOutputType = {
+    id: number | null
+    nom: string | null
+    couleur: string | null
+    createdAt: Date | null
+    userId: number | null
+  }
+
+  export type FolderCountAggregateOutputType = {
+    id: number
+    nom: number
+    couleur: number
+    createdAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type FolderAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type FolderSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type FolderMinAggregateInputType = {
+    id?: true
+    nom?: true
+    couleur?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type FolderMaxAggregateInputType = {
+    id?: true
+    nom?: true
+    couleur?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type FolderCountAggregateInputType = {
+    id?: true
+    nom?: true
+    couleur?: true
+    createdAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type FolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Folder to aggregate.
+     */
+    where?: FolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Folders to fetch.
+     */
+    orderBy?: FolderOrderByWithRelationInput | FolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Folders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Folders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Folders
+    **/
+    _count?: true | FolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FolderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FolderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FolderMaxAggregateInputType
+  }
+
+  export type GetFolderAggregateType<T extends FolderAggregateArgs> = {
+        [P in keyof T & keyof AggregateFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFolder[P]>
+      : GetScalarType<T[P], AggregateFolder[P]>
+  }
+
+
+
+
+  export type FolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FolderWhereInput
+    orderBy?: FolderOrderByWithAggregationInput | FolderOrderByWithAggregationInput[]
+    by: FolderScalarFieldEnum[] | FolderScalarFieldEnum
+    having?: FolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FolderCountAggregateInputType | true
+    _avg?: FolderAvgAggregateInputType
+    _sum?: FolderSumAggregateInputType
+    _min?: FolderMinAggregateInputType
+    _max?: FolderMaxAggregateInputType
+  }
+
+  export type FolderGroupByOutputType = {
+    id: number
+    nom: string
+    couleur: string
+    createdAt: Date
+    userId: number
+    _count: FolderCountAggregateOutputType | null
+    _avg: FolderAvgAggregateOutputType | null
+    _sum: FolderSumAggregateOutputType | null
+    _min: FolderMinAggregateOutputType | null
+    _max: FolderMaxAggregateOutputType | null
+  }
+
+  type GetFolderGroupByPayload<T extends FolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FolderGroupByOutputType[P]>
+            : GetScalarType<T[P], FolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nom?: boolean
+    couleur?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    snippets?: boolean | Folder$snippetsArgs<ExtArgs>
+    _count?: boolean | FolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["folder"]>
+
+  export type FolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nom?: boolean
+    couleur?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["folder"]>
+
+  export type FolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nom?: boolean
+    couleur?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["folder"]>
+
+  export type FolderSelectScalar = {
+    id?: boolean
+    nom?: boolean
+    couleur?: boolean
+    createdAt?: boolean
+    userId?: boolean
+  }
+
+  export type FolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nom" | "couleur" | "createdAt" | "userId", ExtArgs["result"]["folder"]>
+  export type FolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    snippets?: boolean | Folder$snippetsArgs<ExtArgs>
+    _count?: boolean | FolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Folder"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      snippets: Prisma.$SnippetPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nom: string
+      couleur: string
+      createdAt: Date
+      userId: number
+    }, ExtArgs["result"]["folder"]>
+    composites: {}
+  }
+
+  type FolderGetPayload<S extends boolean | null | undefined | FolderDefaultArgs> = $Result.GetResult<Prisma.$FolderPayload, S>
+
+  type FolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FolderCountAggregateInputType | true
+    }
+
+  export interface FolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Folder'], meta: { name: 'Folder' } }
+    /**
+     * Find zero or one Folder that matches the filter.
+     * @param {FolderFindUniqueArgs} args - Arguments to find a Folder
+     * @example
+     * // Get one Folder
+     * const folder = await prisma.folder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FolderFindUniqueArgs>(args: SelectSubset<T, FolderFindUniqueArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Folder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FolderFindUniqueOrThrowArgs} args - Arguments to find a Folder
+     * @example
+     * // Get one Folder
+     * const folder = await prisma.folder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FolderFindUniqueOrThrowArgs>(args: SelectSubset<T, FolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Folder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FolderFindFirstArgs} args - Arguments to find a Folder
+     * @example
+     * // Get one Folder
+     * const folder = await prisma.folder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FolderFindFirstArgs>(args?: SelectSubset<T, FolderFindFirstArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Folder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FolderFindFirstOrThrowArgs} args - Arguments to find a Folder
+     * @example
+     * // Get one Folder
+     * const folder = await prisma.folder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FolderFindFirstOrThrowArgs>(args?: SelectSubset<T, FolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Folders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Folders
+     * const folders = await prisma.folder.findMany()
+     * 
+     * // Get first 10 Folders
+     * const folders = await prisma.folder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const folderWithIdOnly = await prisma.folder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FolderFindManyArgs>(args?: SelectSubset<T, FolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Folder.
+     * @param {FolderCreateArgs} args - Arguments to create a Folder.
+     * @example
+     * // Create one Folder
+     * const Folder = await prisma.folder.create({
+     *   data: {
+     *     // ... data to create a Folder
+     *   }
+     * })
+     * 
+     */
+    create<T extends FolderCreateArgs>(args: SelectSubset<T, FolderCreateArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Folders.
+     * @param {FolderCreateManyArgs} args - Arguments to create many Folders.
+     * @example
+     * // Create many Folders
+     * const folder = await prisma.folder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FolderCreateManyArgs>(args?: SelectSubset<T, FolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Folders and returns the data saved in the database.
+     * @param {FolderCreateManyAndReturnArgs} args - Arguments to create many Folders.
+     * @example
+     * // Create many Folders
+     * const folder = await prisma.folder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Folders and only return the `id`
+     * const folderWithIdOnly = await prisma.folder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FolderCreateManyAndReturnArgs>(args?: SelectSubset<T, FolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Folder.
+     * @param {FolderDeleteArgs} args - Arguments to delete one Folder.
+     * @example
+     * // Delete one Folder
+     * const Folder = await prisma.folder.delete({
+     *   where: {
+     *     // ... filter to delete one Folder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FolderDeleteArgs>(args: SelectSubset<T, FolderDeleteArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Folder.
+     * @param {FolderUpdateArgs} args - Arguments to update one Folder.
+     * @example
+     * // Update one Folder
+     * const folder = await prisma.folder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FolderUpdateArgs>(args: SelectSubset<T, FolderUpdateArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Folders.
+     * @param {FolderDeleteManyArgs} args - Arguments to filter Folders to delete.
+     * @example
+     * // Delete a few Folders
+     * const { count } = await prisma.folder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FolderDeleteManyArgs>(args?: SelectSubset<T, FolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Folders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Folders
+     * const folder = await prisma.folder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FolderUpdateManyArgs>(args: SelectSubset<T, FolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Folders and returns the data updated in the database.
+     * @param {FolderUpdateManyAndReturnArgs} args - Arguments to update many Folders.
+     * @example
+     * // Update many Folders
+     * const folder = await prisma.folder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Folders and only return the `id`
+     * const folderWithIdOnly = await prisma.folder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FolderUpdateManyAndReturnArgs>(args: SelectSubset<T, FolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Folder.
+     * @param {FolderUpsertArgs} args - Arguments to update or create a Folder.
+     * @example
+     * // Update or create a Folder
+     * const folder = await prisma.folder.upsert({
+     *   create: {
+     *     // ... data to create a Folder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Folder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FolderUpsertArgs>(args: SelectSubset<T, FolderUpsertArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Folders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FolderCountArgs} args - Arguments to filter Folders to count.
+     * @example
+     * // Count the number of Folders
+     * const count = await prisma.folder.count({
+     *   where: {
+     *     // ... the filter for the Folders we want to count
+     *   }
+     * })
+    **/
+    count<T extends FolderCountArgs>(
+      args?: Subset<T, FolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Folder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FolderAggregateArgs>(args: Subset<T, FolderAggregateArgs>): Prisma.PrismaPromise<GetFolderAggregateType<T>>
+
+    /**
+     * Group by Folder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FolderGroupByArgs['orderBy'] }
+        : { orderBy?: FolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Folder model
+   */
+  readonly fields: FolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Folder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    snippets<T extends Folder$snippetsArgs<ExtArgs> = {}>(args?: Subset<T, Folder$snippetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Folder model
+   */
+  interface FolderFieldRefs {
+    readonly id: FieldRef<"Folder", 'Int'>
+    readonly nom: FieldRef<"Folder", 'String'>
+    readonly couleur: FieldRef<"Folder", 'String'>
+    readonly createdAt: FieldRef<"Folder", 'DateTime'>
+    readonly userId: FieldRef<"Folder", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Folder findUnique
+   */
+  export type FolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * Filter, which Folder to fetch.
+     */
+    where: FolderWhereUniqueInput
+  }
+
+  /**
+   * Folder findUniqueOrThrow
+   */
+  export type FolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * Filter, which Folder to fetch.
+     */
+    where: FolderWhereUniqueInput
+  }
+
+  /**
+   * Folder findFirst
+   */
+  export type FolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * Filter, which Folder to fetch.
+     */
+    where?: FolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Folders to fetch.
+     */
+    orderBy?: FolderOrderByWithRelationInput | FolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Folders.
+     */
+    cursor?: FolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Folders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Folders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Folders.
+     */
+    distinct?: FolderScalarFieldEnum | FolderScalarFieldEnum[]
+  }
+
+  /**
+   * Folder findFirstOrThrow
+   */
+  export type FolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * Filter, which Folder to fetch.
+     */
+    where?: FolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Folders to fetch.
+     */
+    orderBy?: FolderOrderByWithRelationInput | FolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Folders.
+     */
+    cursor?: FolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Folders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Folders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Folders.
+     */
+    distinct?: FolderScalarFieldEnum | FolderScalarFieldEnum[]
+  }
+
+  /**
+   * Folder findMany
+   */
+  export type FolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * Filter, which Folders to fetch.
+     */
+    where?: FolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Folders to fetch.
+     */
+    orderBy?: FolderOrderByWithRelationInput | FolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Folders.
+     */
+    cursor?: FolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Folders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Folders.
+     */
+    skip?: number
+    distinct?: FolderScalarFieldEnum | FolderScalarFieldEnum[]
+  }
+
+  /**
+   * Folder create
+   */
+  export type FolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Folder.
+     */
+    data: XOR<FolderCreateInput, FolderUncheckedCreateInput>
+  }
+
+  /**
+   * Folder createMany
+   */
+  export type FolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Folders.
+     */
+    data: FolderCreateManyInput | FolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Folder createManyAndReturn
+   */
+  export type FolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many Folders.
+     */
+    data: FolderCreateManyInput | FolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Folder update
+   */
+  export type FolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Folder.
+     */
+    data: XOR<FolderUpdateInput, FolderUncheckedUpdateInput>
+    /**
+     * Choose, which Folder to update.
+     */
+    where: FolderWhereUniqueInput
+  }
+
+  /**
+   * Folder updateMany
+   */
+  export type FolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Folders.
+     */
+    data: XOR<FolderUpdateManyMutationInput, FolderUncheckedUpdateManyInput>
+    /**
+     * Filter which Folders to update
+     */
+    where?: FolderWhereInput
+    /**
+     * Limit how many Folders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Folder updateManyAndReturn
+   */
+  export type FolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * The data used to update Folders.
+     */
+    data: XOR<FolderUpdateManyMutationInput, FolderUncheckedUpdateManyInput>
+    /**
+     * Filter which Folders to update
+     */
+    where?: FolderWhereInput
+    /**
+     * Limit how many Folders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Folder upsert
+   */
+  export type FolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Folder to update in case it exists.
+     */
+    where: FolderWhereUniqueInput
+    /**
+     * In case the Folder found by the `where` argument doesn't exist, create a new Folder with this data.
+     */
+    create: XOR<FolderCreateInput, FolderUncheckedCreateInput>
+    /**
+     * In case the Folder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FolderUpdateInput, FolderUncheckedUpdateInput>
+  }
+
+  /**
+   * Folder delete
+   */
+  export type FolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    /**
+     * Filter which Folder to delete.
+     */
+    where: FolderWhereUniqueInput
+  }
+
+  /**
+   * Folder deleteMany
+   */
+  export type FolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Folders to delete
+     */
+    where?: FolderWhereInput
+    /**
+     * Limit how many Folders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Folder.snippets
+   */
+  export type Folder$snippetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    where?: SnippetWhereInput
+    orderBy?: SnippetOrderByWithRelationInput | SnippetOrderByWithRelationInput[]
+    cursor?: SnippetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SnippetScalarFieldEnum | SnippetScalarFieldEnum[]
+  }
+
+  /**
+   * Folder without action
+   */
+  export type FolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Snippet
+   */
+
+  export type AggregateSnippet = {
+    _count: SnippetCountAggregateOutputType | null
+    _avg: SnippetAvgAggregateOutputType | null
+    _sum: SnippetSumAggregateOutputType | null
+    _min: SnippetMinAggregateOutputType | null
+    _max: SnippetMaxAggregateOutputType | null
+  }
+
+  export type SnippetAvgAggregateOutputType = {
+    id: number | null
+    dossierId: number | null
+    utilisateurId: number | null
+  }
+
+  export type SnippetSumAggregateOutputType = {
+    id: number | null
+    dossierId: number | null
+    utilisateurId: number | null
+  }
+
+  export type SnippetMinAggregateOutputType = {
+    id: number | null
+    titre: string | null
+    description: string | null
+    code: string | null
+    langage: string | null
+    isFavorite: boolean | null
+    dossierId: number | null
+    utilisateurId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SnippetMaxAggregateOutputType = {
+    id: number | null
+    titre: string | null
+    description: string | null
+    code: string | null
+    langage: string | null
+    isFavorite: boolean | null
+    dossierId: number | null
+    utilisateurId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SnippetCountAggregateOutputType = {
+    id: number
+    titre: number
+    description: number
+    code: number
+    langage: number
+    isFavorite: number
+    dossierId: number
+    utilisateurId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SnippetAvgAggregateInputType = {
+    id?: true
+    dossierId?: true
+    utilisateurId?: true
+  }
+
+  export type SnippetSumAggregateInputType = {
+    id?: true
+    dossierId?: true
+    utilisateurId?: true
+  }
+
+  export type SnippetMinAggregateInputType = {
+    id?: true
+    titre?: true
+    description?: true
+    code?: true
+    langage?: true
+    isFavorite?: true
+    dossierId?: true
+    utilisateurId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SnippetMaxAggregateInputType = {
+    id?: true
+    titre?: true
+    description?: true
+    code?: true
+    langage?: true
+    isFavorite?: true
+    dossierId?: true
+    utilisateurId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SnippetCountAggregateInputType = {
+    id?: true
+    titre?: true
+    description?: true
+    code?: true
+    langage?: true
+    isFavorite?: true
+    dossierId?: true
+    utilisateurId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SnippetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Snippet to aggregate.
+     */
+    where?: SnippetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Snippets to fetch.
+     */
+    orderBy?: SnippetOrderByWithRelationInput | SnippetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SnippetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Snippets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Snippets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Snippets
+    **/
+    _count?: true | SnippetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SnippetAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SnippetSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SnippetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SnippetMaxAggregateInputType
+  }
+
+  export type GetSnippetAggregateType<T extends SnippetAggregateArgs> = {
+        [P in keyof T & keyof AggregateSnippet]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSnippet[P]>
+      : GetScalarType<T[P], AggregateSnippet[P]>
+  }
+
+
+
+
+  export type SnippetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SnippetWhereInput
+    orderBy?: SnippetOrderByWithAggregationInput | SnippetOrderByWithAggregationInput[]
+    by: SnippetScalarFieldEnum[] | SnippetScalarFieldEnum
+    having?: SnippetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SnippetCountAggregateInputType | true
+    _avg?: SnippetAvgAggregateInputType
+    _sum?: SnippetSumAggregateInputType
+    _min?: SnippetMinAggregateInputType
+    _max?: SnippetMaxAggregateInputType
+  }
+
+  export type SnippetGroupByOutputType = {
+    id: number
+    titre: string
+    description: string | null
+    code: string
+    langage: string
+    isFavorite: boolean
+    dossierId: number | null
+    utilisateurId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: SnippetCountAggregateOutputType | null
+    _avg: SnippetAvgAggregateOutputType | null
+    _sum: SnippetSumAggregateOutputType | null
+    _min: SnippetMinAggregateOutputType | null
+    _max: SnippetMaxAggregateOutputType | null
+  }
+
+  type GetSnippetGroupByPayload<T extends SnippetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SnippetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SnippetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SnippetGroupByOutputType[P]>
+            : GetScalarType<T[P], SnippetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SnippetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titre?: boolean
+    description?: boolean
+    code?: boolean
+    langage?: boolean
+    isFavorite?: boolean
+    dossierId?: boolean
+    utilisateurId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    folder?: boolean | Snippet$folderArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["snippet"]>
+
+  export type SnippetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titre?: boolean
+    description?: boolean
+    code?: boolean
+    langage?: boolean
+    isFavorite?: boolean
+    dossierId?: boolean
+    utilisateurId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    folder?: boolean | Snippet$folderArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["snippet"]>
+
+  export type SnippetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titre?: boolean
+    description?: boolean
+    code?: boolean
+    langage?: boolean
+    isFavorite?: boolean
+    dossierId?: boolean
+    utilisateurId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    folder?: boolean | Snippet$folderArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["snippet"]>
+
+  export type SnippetSelectScalar = {
+    id?: boolean
+    titre?: boolean
+    description?: boolean
+    code?: boolean
+    langage?: boolean
+    isFavorite?: boolean
+    dossierId?: boolean
+    utilisateurId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SnippetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titre" | "description" | "code" | "langage" | "isFavorite" | "dossierId" | "utilisateurId" | "createdAt" | "updatedAt", ExtArgs["result"]["snippet"]>
+  export type SnippetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    folder?: boolean | Snippet$folderArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SnippetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    folder?: boolean | Snippet$folderArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SnippetIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    folder?: boolean | Snippet$folderArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SnippetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Snippet"
+    objects: {
+      folder: Prisma.$FolderPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      titre: string
+      description: string | null
+      code: string
+      langage: string
+      isFavorite: boolean
+      dossierId: number | null
+      utilisateurId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["snippet"]>
+    composites: {}
+  }
+
+  type SnippetGetPayload<S extends boolean | null | undefined | SnippetDefaultArgs> = $Result.GetResult<Prisma.$SnippetPayload, S>
+
+  type SnippetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SnippetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SnippetCountAggregateInputType | true
+    }
+
+  export interface SnippetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Snippet'], meta: { name: 'Snippet' } }
+    /**
+     * Find zero or one Snippet that matches the filter.
+     * @param {SnippetFindUniqueArgs} args - Arguments to find a Snippet
+     * @example
+     * // Get one Snippet
+     * const snippet = await prisma.snippet.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SnippetFindUniqueArgs>(args: SelectSubset<T, SnippetFindUniqueArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Snippet that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SnippetFindUniqueOrThrowArgs} args - Arguments to find a Snippet
+     * @example
+     * // Get one Snippet
+     * const snippet = await prisma.snippet.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SnippetFindUniqueOrThrowArgs>(args: SelectSubset<T, SnippetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Snippet that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SnippetFindFirstArgs} args - Arguments to find a Snippet
+     * @example
+     * // Get one Snippet
+     * const snippet = await prisma.snippet.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SnippetFindFirstArgs>(args?: SelectSubset<T, SnippetFindFirstArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Snippet that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SnippetFindFirstOrThrowArgs} args - Arguments to find a Snippet
+     * @example
+     * // Get one Snippet
+     * const snippet = await prisma.snippet.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SnippetFindFirstOrThrowArgs>(args?: SelectSubset<T, SnippetFindFirstOrThrowArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Snippets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SnippetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Snippets
+     * const snippets = await prisma.snippet.findMany()
+     * 
+     * // Get first 10 Snippets
+     * const snippets = await prisma.snippet.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const snippetWithIdOnly = await prisma.snippet.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SnippetFindManyArgs>(args?: SelectSubset<T, SnippetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Snippet.
+     * @param {SnippetCreateArgs} args - Arguments to create a Snippet.
+     * @example
+     * // Create one Snippet
+     * const Snippet = await prisma.snippet.create({
+     *   data: {
+     *     // ... data to create a Snippet
+     *   }
+     * })
+     * 
+     */
+    create<T extends SnippetCreateArgs>(args: SelectSubset<T, SnippetCreateArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Snippets.
+     * @param {SnippetCreateManyArgs} args - Arguments to create many Snippets.
+     * @example
+     * // Create many Snippets
+     * const snippet = await prisma.snippet.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SnippetCreateManyArgs>(args?: SelectSubset<T, SnippetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Snippets and returns the data saved in the database.
+     * @param {SnippetCreateManyAndReturnArgs} args - Arguments to create many Snippets.
+     * @example
+     * // Create many Snippets
+     * const snippet = await prisma.snippet.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Snippets and only return the `id`
+     * const snippetWithIdOnly = await prisma.snippet.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SnippetCreateManyAndReturnArgs>(args?: SelectSubset<T, SnippetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Snippet.
+     * @param {SnippetDeleteArgs} args - Arguments to delete one Snippet.
+     * @example
+     * // Delete one Snippet
+     * const Snippet = await prisma.snippet.delete({
+     *   where: {
+     *     // ... filter to delete one Snippet
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SnippetDeleteArgs>(args: SelectSubset<T, SnippetDeleteArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Snippet.
+     * @param {SnippetUpdateArgs} args - Arguments to update one Snippet.
+     * @example
+     * // Update one Snippet
+     * const snippet = await prisma.snippet.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SnippetUpdateArgs>(args: SelectSubset<T, SnippetUpdateArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Snippets.
+     * @param {SnippetDeleteManyArgs} args - Arguments to filter Snippets to delete.
+     * @example
+     * // Delete a few Snippets
+     * const { count } = await prisma.snippet.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SnippetDeleteManyArgs>(args?: SelectSubset<T, SnippetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Snippets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SnippetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Snippets
+     * const snippet = await prisma.snippet.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SnippetUpdateManyArgs>(args: SelectSubset<T, SnippetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Snippets and returns the data updated in the database.
+     * @param {SnippetUpdateManyAndReturnArgs} args - Arguments to update many Snippets.
+     * @example
+     * // Update many Snippets
+     * const snippet = await prisma.snippet.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Snippets and only return the `id`
+     * const snippetWithIdOnly = await prisma.snippet.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SnippetUpdateManyAndReturnArgs>(args: SelectSubset<T, SnippetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Snippet.
+     * @param {SnippetUpsertArgs} args - Arguments to update or create a Snippet.
+     * @example
+     * // Update or create a Snippet
+     * const snippet = await prisma.snippet.upsert({
+     *   create: {
+     *     // ... data to create a Snippet
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Snippet we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SnippetUpsertArgs>(args: SelectSubset<T, SnippetUpsertArgs<ExtArgs>>): Prisma__SnippetClient<$Result.GetResult<Prisma.$SnippetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Snippets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SnippetCountArgs} args - Arguments to filter Snippets to count.
+     * @example
+     * // Count the number of Snippets
+     * const count = await prisma.snippet.count({
+     *   where: {
+     *     // ... the filter for the Snippets we want to count
+     *   }
+     * })
+    **/
+    count<T extends SnippetCountArgs>(
+      args?: Subset<T, SnippetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SnippetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Snippet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SnippetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SnippetAggregateArgs>(args: Subset<T, SnippetAggregateArgs>): Prisma.PrismaPromise<GetSnippetAggregateType<T>>
+
+    /**
+     * Group by Snippet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SnippetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SnippetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SnippetGroupByArgs['orderBy'] }
+        : { orderBy?: SnippetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SnippetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSnippetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Snippet model
+   */
+  readonly fields: SnippetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Snippet.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SnippetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    folder<T extends Snippet$folderArgs<ExtArgs> = {}>(args?: Subset<T, Snippet$folderArgs<ExtArgs>>): Prisma__FolderClient<$Result.GetResult<Prisma.$FolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Snippet model
+   */
+  interface SnippetFieldRefs {
+    readonly id: FieldRef<"Snippet", 'Int'>
+    readonly titre: FieldRef<"Snippet", 'String'>
+    readonly description: FieldRef<"Snippet", 'String'>
+    readonly code: FieldRef<"Snippet", 'String'>
+    readonly langage: FieldRef<"Snippet", 'String'>
+    readonly isFavorite: FieldRef<"Snippet", 'Boolean'>
+    readonly dossierId: FieldRef<"Snippet", 'Int'>
+    readonly utilisateurId: FieldRef<"Snippet", 'Int'>
+    readonly createdAt: FieldRef<"Snippet", 'DateTime'>
+    readonly updatedAt: FieldRef<"Snippet", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Snippet findUnique
+   */
+  export type SnippetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * Filter, which Snippet to fetch.
+     */
+    where: SnippetWhereUniqueInput
+  }
+
+  /**
+   * Snippet findUniqueOrThrow
+   */
+  export type SnippetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * Filter, which Snippet to fetch.
+     */
+    where: SnippetWhereUniqueInput
+  }
+
+  /**
+   * Snippet findFirst
+   */
+  export type SnippetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * Filter, which Snippet to fetch.
+     */
+    where?: SnippetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Snippets to fetch.
+     */
+    orderBy?: SnippetOrderByWithRelationInput | SnippetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Snippets.
+     */
+    cursor?: SnippetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Snippets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Snippets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Snippets.
+     */
+    distinct?: SnippetScalarFieldEnum | SnippetScalarFieldEnum[]
+  }
+
+  /**
+   * Snippet findFirstOrThrow
+   */
+  export type SnippetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * Filter, which Snippet to fetch.
+     */
+    where?: SnippetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Snippets to fetch.
+     */
+    orderBy?: SnippetOrderByWithRelationInput | SnippetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Snippets.
+     */
+    cursor?: SnippetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Snippets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Snippets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Snippets.
+     */
+    distinct?: SnippetScalarFieldEnum | SnippetScalarFieldEnum[]
+  }
+
+  /**
+   * Snippet findMany
+   */
+  export type SnippetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * Filter, which Snippets to fetch.
+     */
+    where?: SnippetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Snippets to fetch.
+     */
+    orderBy?: SnippetOrderByWithRelationInput | SnippetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Snippets.
+     */
+    cursor?: SnippetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Snippets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Snippets.
+     */
+    skip?: number
+    distinct?: SnippetScalarFieldEnum | SnippetScalarFieldEnum[]
+  }
+
+  /**
+   * Snippet create
+   */
+  export type SnippetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Snippet.
+     */
+    data: XOR<SnippetCreateInput, SnippetUncheckedCreateInput>
+  }
+
+  /**
+   * Snippet createMany
+   */
+  export type SnippetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Snippets.
+     */
+    data: SnippetCreateManyInput | SnippetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Snippet createManyAndReturn
+   */
+  export type SnippetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * The data used to create many Snippets.
+     */
+    data: SnippetCreateManyInput | SnippetCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Snippet update
+   */
+  export type SnippetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Snippet.
+     */
+    data: XOR<SnippetUpdateInput, SnippetUncheckedUpdateInput>
+    /**
+     * Choose, which Snippet to update.
+     */
+    where: SnippetWhereUniqueInput
+  }
+
+  /**
+   * Snippet updateMany
+   */
+  export type SnippetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Snippets.
+     */
+    data: XOR<SnippetUpdateManyMutationInput, SnippetUncheckedUpdateManyInput>
+    /**
+     * Filter which Snippets to update
+     */
+    where?: SnippetWhereInput
+    /**
+     * Limit how many Snippets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Snippet updateManyAndReturn
+   */
+  export type SnippetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * The data used to update Snippets.
+     */
+    data: XOR<SnippetUpdateManyMutationInput, SnippetUncheckedUpdateManyInput>
+    /**
+     * Filter which Snippets to update
+     */
+    where?: SnippetWhereInput
+    /**
+     * Limit how many Snippets to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Snippet upsert
+   */
+  export type SnippetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Snippet to update in case it exists.
+     */
+    where: SnippetWhereUniqueInput
+    /**
+     * In case the Snippet found by the `where` argument doesn't exist, create a new Snippet with this data.
+     */
+    create: XOR<SnippetCreateInput, SnippetUncheckedCreateInput>
+    /**
+     * In case the Snippet was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SnippetUpdateInput, SnippetUncheckedUpdateInput>
+  }
+
+  /**
+   * Snippet delete
+   */
+  export type SnippetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
+    /**
+     * Filter which Snippet to delete.
+     */
+    where: SnippetWhereUniqueInput
+  }
+
+  /**
+   * Snippet deleteMany
+   */
+  export type SnippetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Snippets to delete
+     */
+    where?: SnippetWhereInput
+    /**
+     * Limit how many Snippets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Snippet.folder
+   */
+  export type Snippet$folderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Folder
+     */
+    select?: FolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Folder
+     */
+    omit?: FolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FolderInclude<ExtArgs> | null
+    where?: FolderWhereInput
+  }
+
+  /**
+   * Snippet without action
+   */
+  export type SnippetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Snippet
+     */
+    select?: SnippetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Snippet
+     */
+    omit?: SnippetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SnippetInclude<ExtArgs> | null
   }
 
 
@@ -5503,44 +4608,43 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const PlayerScalarFieldEnum: {
-    prenom: 'prenom',
-    nom: 'nom',
-    id: 'id',
-    teamId: 'teamId',
-    positionId: 'positionId'
-  };
-
-  export type PlayerScalarFieldEnum = (typeof PlayerScalarFieldEnum)[keyof typeof PlayerScalarFieldEnum]
-
-
-  export const PositionScalarFieldEnum: {
-    nom: 'nom',
-    id: 'id'
-  };
-
-  export type PositionScalarFieldEnum = (typeof PositionScalarFieldEnum)[keyof typeof PositionScalarFieldEnum]
-
-
-  export const TeamScalarFieldEnum: {
-    nom: 'nom',
-    pays: 'pays',
-    id: 'id'
-  };
-
-  export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
-
-
   export const UserScalarFieldEnum: {
-    id: 'id',
-    prenom: 'prenom',
-    nom: 'nom',
     email: 'email',
     password: 'password',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    id: 'id',
+    nomUtilisateur: 'nomUtilisateur',
+    role: 'role'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const FolderScalarFieldEnum: {
+    id: 'id',
+    nom: 'nom',
+    couleur: 'couleur',
+    createdAt: 'createdAt',
+    userId: 'userId'
+  };
+
+  export type FolderScalarFieldEnum = (typeof FolderScalarFieldEnum)[keyof typeof FolderScalarFieldEnum]
+
+
+  export const SnippetScalarFieldEnum: {
+    id: 'id',
+    titre: 'titre',
+    description: 'description',
+    code: 'code',
+    langage: 'langage',
+    isFavorite: 'isFavorite',
+    dossierId: 'dossierId',
+    utilisateurId: 'utilisateurId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SnippetScalarFieldEnum = (typeof SnippetScalarFieldEnum)[keyof typeof SnippetScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5587,6 +4691,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5601,16 +4719,23 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'Role'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
     
 
 
   /**
-   * Reference to a field of type 'DateTime[]'
+   * Reference to a field of type 'Role[]'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -5631,195 +4756,52 @@ export namespace Prisma {
    */
 
 
-  export type PlayerWhereInput = {
-    AND?: PlayerWhereInput | PlayerWhereInput[]
-    OR?: PlayerWhereInput[]
-    NOT?: PlayerWhereInput | PlayerWhereInput[]
-    prenom?: StringFilter<"Player"> | string
-    nom?: StringFilter<"Player"> | string
-    id?: IntFilter<"Player"> | number
-    teamId?: IntFilter<"Player"> | number
-    positionId?: IntFilter<"Player"> | number
-    position?: XOR<PositionScalarRelationFilter, PositionWhereInput>
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
-  }
-
-  export type PlayerOrderByWithRelationInput = {
-    prenom?: SortOrder
-    nom?: SortOrder
-    id?: SortOrder
-    teamId?: SortOrder
-    positionId?: SortOrder
-    position?: PositionOrderByWithRelationInput
-    team?: TeamOrderByWithRelationInput
-  }
-
-  export type PlayerWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: PlayerWhereInput | PlayerWhereInput[]
-    OR?: PlayerWhereInput[]
-    NOT?: PlayerWhereInput | PlayerWhereInput[]
-    prenom?: StringFilter<"Player"> | string
-    nom?: StringFilter<"Player"> | string
-    teamId?: IntFilter<"Player"> | number
-    positionId?: IntFilter<"Player"> | number
-    position?: XOR<PositionScalarRelationFilter, PositionWhereInput>
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
-  }, "id">
-
-  export type PlayerOrderByWithAggregationInput = {
-    prenom?: SortOrder
-    nom?: SortOrder
-    id?: SortOrder
-    teamId?: SortOrder
-    positionId?: SortOrder
-    _count?: PlayerCountOrderByAggregateInput
-    _avg?: PlayerAvgOrderByAggregateInput
-    _max?: PlayerMaxOrderByAggregateInput
-    _min?: PlayerMinOrderByAggregateInput
-    _sum?: PlayerSumOrderByAggregateInput
-  }
-
-  export type PlayerScalarWhereWithAggregatesInput = {
-    AND?: PlayerScalarWhereWithAggregatesInput | PlayerScalarWhereWithAggregatesInput[]
-    OR?: PlayerScalarWhereWithAggregatesInput[]
-    NOT?: PlayerScalarWhereWithAggregatesInput | PlayerScalarWhereWithAggregatesInput[]
-    prenom?: StringWithAggregatesFilter<"Player"> | string
-    nom?: StringWithAggregatesFilter<"Player"> | string
-    id?: IntWithAggregatesFilter<"Player"> | number
-    teamId?: IntWithAggregatesFilter<"Player"> | number
-    positionId?: IntWithAggregatesFilter<"Player"> | number
-  }
-
-  export type PositionWhereInput = {
-    AND?: PositionWhereInput | PositionWhereInput[]
-    OR?: PositionWhereInput[]
-    NOT?: PositionWhereInput | PositionWhereInput[]
-    nom?: StringFilter<"Position"> | string
-    id?: IntFilter<"Position"> | number
-    players?: PlayerListRelationFilter
-  }
-
-  export type PositionOrderByWithRelationInput = {
-    nom?: SortOrder
-    id?: SortOrder
-    players?: PlayerOrderByRelationAggregateInput
-  }
-
-  export type PositionWhereUniqueInput = Prisma.AtLeast<{
-    nom?: string
-    id?: number
-    AND?: PositionWhereInput | PositionWhereInput[]
-    OR?: PositionWhereInput[]
-    NOT?: PositionWhereInput | PositionWhereInput[]
-    players?: PlayerListRelationFilter
-  }, "id" | "nom">
-
-  export type PositionOrderByWithAggregationInput = {
-    nom?: SortOrder
-    id?: SortOrder
-    _count?: PositionCountOrderByAggregateInput
-    _avg?: PositionAvgOrderByAggregateInput
-    _max?: PositionMaxOrderByAggregateInput
-    _min?: PositionMinOrderByAggregateInput
-    _sum?: PositionSumOrderByAggregateInput
-  }
-
-  export type PositionScalarWhereWithAggregatesInput = {
-    AND?: PositionScalarWhereWithAggregatesInput | PositionScalarWhereWithAggregatesInput[]
-    OR?: PositionScalarWhereWithAggregatesInput[]
-    NOT?: PositionScalarWhereWithAggregatesInput | PositionScalarWhereWithAggregatesInput[]
-    nom?: StringWithAggregatesFilter<"Position"> | string
-    id?: IntWithAggregatesFilter<"Position"> | number
-  }
-
-  export type TeamWhereInput = {
-    AND?: TeamWhereInput | TeamWhereInput[]
-    OR?: TeamWhereInput[]
-    NOT?: TeamWhereInput | TeamWhereInput[]
-    nom?: StringFilter<"Team"> | string
-    pays?: StringNullableFilter<"Team"> | string | null
-    id?: IntFilter<"Team"> | number
-    players?: PlayerListRelationFilter
-  }
-
-  export type TeamOrderByWithRelationInput = {
-    nom?: SortOrder
-    pays?: SortOrderInput | SortOrder
-    id?: SortOrder
-    players?: PlayerOrderByRelationAggregateInput
-  }
-
-  export type TeamWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: TeamWhereInput | TeamWhereInput[]
-    OR?: TeamWhereInput[]
-    NOT?: TeamWhereInput | TeamWhereInput[]
-    nom?: StringFilter<"Team"> | string
-    pays?: StringNullableFilter<"Team"> | string | null
-    players?: PlayerListRelationFilter
-  }, "id">
-
-  export type TeamOrderByWithAggregationInput = {
-    nom?: SortOrder
-    pays?: SortOrderInput | SortOrder
-    id?: SortOrder
-    _count?: TeamCountOrderByAggregateInput
-    _avg?: TeamAvgOrderByAggregateInput
-    _max?: TeamMaxOrderByAggregateInput
-    _min?: TeamMinOrderByAggregateInput
-    _sum?: TeamSumOrderByAggregateInput
-  }
-
-  export type TeamScalarWhereWithAggregatesInput = {
-    AND?: TeamScalarWhereWithAggregatesInput | TeamScalarWhereWithAggregatesInput[]
-    OR?: TeamScalarWhereWithAggregatesInput[]
-    NOT?: TeamScalarWhereWithAggregatesInput | TeamScalarWhereWithAggregatesInput[]
-    nom?: StringWithAggregatesFilter<"Team"> | string
-    pays?: StringNullableWithAggregatesFilter<"Team"> | string | null
-    id?: IntWithAggregatesFilter<"Team"> | number
-  }
-
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
-    prenom?: StringFilter<"User"> | string
-    nom?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    id?: IntFilter<"User"> | number
+    nomUtilisateur?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
+    folders?: FolderListRelationFilter
+    snippets?: SnippetListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
-    id?: SortOrder
-    prenom?: SortOrder
-    nom?: SortOrder
     email?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    id?: SortOrder
+    nomUtilisateur?: SortOrder
+    role?: SortOrder
+    folders?: FolderOrderByRelationAggregateInput
+    snippets?: SnippetOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
     email?: string
+    id?: number
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    prenom?: StringFilter<"User"> | string
-    nom?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    nomUtilisateur?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
+    folders?: FolderListRelationFilter
+    snippets?: SnippetListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
-    id?: SortOrder
-    prenom?: SortOrder
-    nom?: SortOrder
     email?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    id?: SortOrder
+    nomUtilisateur?: SortOrder
+    role?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -5831,202 +4813,367 @@ export namespace Prisma {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
-    prenom?: StringWithAggregatesFilter<"User"> | string
-    nom?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    id?: IntWithAggregatesFilter<"User"> | number
+    nomUtilisateur?: StringWithAggregatesFilter<"User"> | string
+    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
-  export type PlayerCreateInput = {
-    prenom: string
-    nom: string
-    position: PositionCreateNestedOneWithoutPlayersInput
-    team: TeamCreateNestedOneWithoutPlayersInput
+  export type FolderWhereInput = {
+    AND?: FolderWhereInput | FolderWhereInput[]
+    OR?: FolderWhereInput[]
+    NOT?: FolderWhereInput | FolderWhereInput[]
+    id?: IntFilter<"Folder"> | number
+    nom?: StringFilter<"Folder"> | string
+    couleur?: StringFilter<"Folder"> | string
+    createdAt?: DateTimeFilter<"Folder"> | Date | string
+    userId?: IntFilter<"Folder"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    snippets?: SnippetListRelationFilter
   }
 
-  export type PlayerUncheckedCreateInput = {
-    prenom: string
-    nom: string
+  export type FolderOrderByWithRelationInput = {
+    id?: SortOrder
+    nom?: SortOrder
+    couleur?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    snippets?: SnippetOrderByRelationAggregateInput
+  }
+
+  export type FolderWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    teamId: number
-    positionId: number
+    AND?: FolderWhereInput | FolderWhereInput[]
+    OR?: FolderWhereInput[]
+    NOT?: FolderWhereInput | FolderWhereInput[]
+    nom?: StringFilter<"Folder"> | string
+    couleur?: StringFilter<"Folder"> | string
+    createdAt?: DateTimeFilter<"Folder"> | Date | string
+    userId?: IntFilter<"Folder"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    snippets?: SnippetListRelationFilter
+  }, "id">
+
+  export type FolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    nom?: SortOrder
+    couleur?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    _count?: FolderCountOrderByAggregateInput
+    _avg?: FolderAvgOrderByAggregateInput
+    _max?: FolderMaxOrderByAggregateInput
+    _min?: FolderMinOrderByAggregateInput
+    _sum?: FolderSumOrderByAggregateInput
   }
 
-  export type PlayerUpdateInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-    position?: PositionUpdateOneRequiredWithoutPlayersNestedInput
-    team?: TeamUpdateOneRequiredWithoutPlayersNestedInput
+  export type FolderScalarWhereWithAggregatesInput = {
+    AND?: FolderScalarWhereWithAggregatesInput | FolderScalarWhereWithAggregatesInput[]
+    OR?: FolderScalarWhereWithAggregatesInput[]
+    NOT?: FolderScalarWhereWithAggregatesInput | FolderScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Folder"> | number
+    nom?: StringWithAggregatesFilter<"Folder"> | string
+    couleur?: StringWithAggregatesFilter<"Folder"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Folder"> | Date | string
+    userId?: IntWithAggregatesFilter<"Folder"> | number
   }
 
-  export type PlayerUncheckedUpdateInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-    id?: IntFieldUpdateOperationsInput | number
-    teamId?: IntFieldUpdateOperationsInput | number
-    positionId?: IntFieldUpdateOperationsInput | number
+  export type SnippetWhereInput = {
+    AND?: SnippetWhereInput | SnippetWhereInput[]
+    OR?: SnippetWhereInput[]
+    NOT?: SnippetWhereInput | SnippetWhereInput[]
+    id?: IntFilter<"Snippet"> | number
+    titre?: StringFilter<"Snippet"> | string
+    description?: StringNullableFilter<"Snippet"> | string | null
+    code?: StringFilter<"Snippet"> | string
+    langage?: StringFilter<"Snippet"> | string
+    isFavorite?: BoolFilter<"Snippet"> | boolean
+    dossierId?: IntNullableFilter<"Snippet"> | number | null
+    utilisateurId?: IntFilter<"Snippet"> | number
+    createdAt?: DateTimeFilter<"Snippet"> | Date | string
+    updatedAt?: DateTimeFilter<"Snippet"> | Date | string
+    folder?: XOR<FolderNullableScalarRelationFilter, FolderWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type PlayerCreateManyInput = {
-    prenom: string
-    nom: string
+  export type SnippetOrderByWithRelationInput = {
+    id?: SortOrder
+    titre?: SortOrder
+    description?: SortOrderInput | SortOrder
+    code?: SortOrder
+    langage?: SortOrder
+    isFavorite?: SortOrder
+    dossierId?: SortOrderInput | SortOrder
+    utilisateurId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    folder?: FolderOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SnippetWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    teamId: number
-    positionId: number
+    AND?: SnippetWhereInput | SnippetWhereInput[]
+    OR?: SnippetWhereInput[]
+    NOT?: SnippetWhereInput | SnippetWhereInput[]
+    titre?: StringFilter<"Snippet"> | string
+    description?: StringNullableFilter<"Snippet"> | string | null
+    code?: StringFilter<"Snippet"> | string
+    langage?: StringFilter<"Snippet"> | string
+    isFavorite?: BoolFilter<"Snippet"> | boolean
+    dossierId?: IntNullableFilter<"Snippet"> | number | null
+    utilisateurId?: IntFilter<"Snippet"> | number
+    createdAt?: DateTimeFilter<"Snippet"> | Date | string
+    updatedAt?: DateTimeFilter<"Snippet"> | Date | string
+    folder?: XOR<FolderNullableScalarRelationFilter, FolderWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type SnippetOrderByWithAggregationInput = {
+    id?: SortOrder
+    titre?: SortOrder
+    description?: SortOrderInput | SortOrder
+    code?: SortOrder
+    langage?: SortOrder
+    isFavorite?: SortOrder
+    dossierId?: SortOrderInput | SortOrder
+    utilisateurId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SnippetCountOrderByAggregateInput
+    _avg?: SnippetAvgOrderByAggregateInput
+    _max?: SnippetMaxOrderByAggregateInput
+    _min?: SnippetMinOrderByAggregateInput
+    _sum?: SnippetSumOrderByAggregateInput
   }
 
-  export type PlayerUpdateManyMutationInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PlayerUncheckedUpdateManyInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-    id?: IntFieldUpdateOperationsInput | number
-    teamId?: IntFieldUpdateOperationsInput | number
-    positionId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PositionCreateInput = {
-    nom: string
-    players?: PlayerCreateNestedManyWithoutPositionInput
-  }
-
-  export type PositionUncheckedCreateInput = {
-    nom: string
-    id?: number
-    players?: PlayerUncheckedCreateNestedManyWithoutPositionInput
-  }
-
-  export type PositionUpdateInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    players?: PlayerUpdateManyWithoutPositionNestedInput
-  }
-
-  export type PositionUncheckedUpdateInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    id?: IntFieldUpdateOperationsInput | number
-    players?: PlayerUncheckedUpdateManyWithoutPositionNestedInput
-  }
-
-  export type PositionCreateManyInput = {
-    nom: string
-    id?: number
-  }
-
-  export type PositionUpdateManyMutationInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PositionUncheckedUpdateManyInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TeamCreateInput = {
-    nom: string
-    pays?: string | null
-    players?: PlayerCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamUncheckedCreateInput = {
-    nom: string
-    pays?: string | null
-    id?: number
-    players?: PlayerUncheckedCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamUpdateInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    pays?: NullableStringFieldUpdateOperationsInput | string | null
-    players?: PlayerUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamUncheckedUpdateInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    pays?: NullableStringFieldUpdateOperationsInput | string | null
-    id?: IntFieldUpdateOperationsInput | number
-    players?: PlayerUncheckedUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamCreateManyInput = {
-    nom: string
-    pays?: string | null
-    id?: number
-  }
-
-  export type TeamUpdateManyMutationInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    pays?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type TeamUncheckedUpdateManyInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    pays?: NullableStringFieldUpdateOperationsInput | string | null
-    id?: IntFieldUpdateOperationsInput | number
+  export type SnippetScalarWhereWithAggregatesInput = {
+    AND?: SnippetScalarWhereWithAggregatesInput | SnippetScalarWhereWithAggregatesInput[]
+    OR?: SnippetScalarWhereWithAggregatesInput[]
+    NOT?: SnippetScalarWhereWithAggregatesInput | SnippetScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Snippet"> | number
+    titre?: StringWithAggregatesFilter<"Snippet"> | string
+    description?: StringNullableWithAggregatesFilter<"Snippet"> | string | null
+    code?: StringWithAggregatesFilter<"Snippet"> | string
+    langage?: StringWithAggregatesFilter<"Snippet"> | string
+    isFavorite?: BoolWithAggregatesFilter<"Snippet"> | boolean
+    dossierId?: IntNullableWithAggregatesFilter<"Snippet"> | number | null
+    utilisateurId?: IntWithAggregatesFilter<"Snippet"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Snippet"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Snippet"> | Date | string
   }
 
   export type UserCreateInput = {
-    prenom: string
-    nom: string
     email: string
     password: string
     createdAt?: Date | string
+    nomUtilisateur: string
+    role?: $Enums.Role
+    folders?: FolderCreateNestedManyWithoutUserInput
+    snippets?: SnippetCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
-    id?: number
-    prenom: string
-    nom: string
     email: string
     password: string
     createdAt?: Date | string
+    id?: number
+    nomUtilisateur: string
+    role?: $Enums.Role
+    folders?: FolderUncheckedCreateNestedManyWithoutUserInput
+    snippets?: SnippetUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    folders?: FolderUpdateManyWithoutUserNestedInput
+    snippets?: SnippetUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    folders?: FolderUncheckedUpdateManyWithoutUserNestedInput
+    snippets?: SnippetUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
-    id?: number
-    prenom: string
-    nom: string
     email: string
     password: string
     createdAt?: Date | string
+    id?: number
+    nomUtilisateur: string
+    role?: $Enums.Role
   }
 
   export type UserUpdateManyMutationInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type FolderCreateInput = {
+    nom: string
+    couleur: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFoldersInput
+    snippets?: SnippetCreateNestedManyWithoutFolderInput
+  }
+
+  export type FolderUncheckedCreateInput = {
+    id?: number
+    nom: string
+    couleur: string
+    createdAt?: Date | string
+    userId: number
+    snippets?: SnippetUncheckedCreateNestedManyWithoutFolderInput
+  }
+
+  export type FolderUpdateInput = {
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFoldersNestedInput
+    snippets?: SnippetUpdateManyWithoutFolderNestedInput
+  }
+
+  export type FolderUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    snippets?: SnippetUncheckedUpdateManyWithoutFolderNestedInput
+  }
+
+  export type FolderCreateManyInput = {
+    id?: number
+    nom: string
+    couleur: string
+    createdAt?: Date | string
+    userId: number
+  }
+
+  export type FolderUpdateManyMutationInput = {
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FolderUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SnippetCreateInput = {
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    folder?: FolderCreateNestedOneWithoutSnippetsInput
+    user: UserCreateNestedOneWithoutSnippetsInput
+  }
+
+  export type SnippetUncheckedCreateInput = {
+    id?: number
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    dossierId?: number | null
+    utilisateurId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SnippetUpdateInput = {
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folder?: FolderUpdateOneWithoutSnippetsNestedInput
+    user?: UserUpdateOneRequiredWithoutSnippetsNestedInput
+  }
+
+  export type SnippetUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    dossierId?: NullableIntFieldUpdateOperationsInput | number | null
+    utilisateurId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SnippetCreateManyInput = {
+    id?: number
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    dossierId?: number | null
+    utilisateurId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SnippetUpdateManyMutationInput = {
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SnippetUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    dossierId?: NullableIntFieldUpdateOperationsInput | number | null
+    utilisateurId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6044,6 +5191,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6055,50 +5213,66 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type PositionScalarRelationFilter = {
-    is?: PositionWhereInput
-    isNot?: PositionWhereInput
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type TeamScalarRelationFilter = {
-    is?: TeamWhereInput
-    isNot?: TeamWhereInput
+  export type FolderListRelationFilter = {
+    every?: FolderWhereInput
+    some?: FolderWhereInput
+    none?: FolderWhereInput
   }
 
-  export type PlayerCountOrderByAggregateInput = {
-    prenom?: SortOrder
-    nom?: SortOrder
+  export type SnippetListRelationFilter = {
+    every?: SnippetWhereInput
+    some?: SnippetWhereInput
+    none?: SnippetWhereInput
+  }
+
+  export type FolderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SnippetOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    email?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
     id?: SortOrder
-    teamId?: SortOrder
-    positionId?: SortOrder
+    nomUtilisateur?: SortOrder
+    role?: SortOrder
   }
 
-  export type PlayerAvgOrderByAggregateInput = {
+  export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
-    teamId?: SortOrder
-    positionId?: SortOrder
   }
 
-  export type PlayerMaxOrderByAggregateInput = {
-    prenom?: SortOrder
-    nom?: SortOrder
+  export type UserMaxOrderByAggregateInput = {
+    email?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
     id?: SortOrder
-    teamId?: SortOrder
-    positionId?: SortOrder
+    nomUtilisateur?: SortOrder
+    role?: SortOrder
   }
 
-  export type PlayerMinOrderByAggregateInput = {
-    prenom?: SortOrder
-    nom?: SortOrder
+  export type UserMinOrderByAggregateInput = {
+    email?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
     id?: SortOrder
-    teamId?: SortOrder
-    positionId?: SortOrder
+    nomUtilisateur?: SortOrder
+    role?: SortOrder
   }
 
-  export type PlayerSumOrderByAggregateInput = {
+  export type UserSumOrderByAggregateInput = {
     id?: SortOrder
-    teamId?: SortOrder
-    positionId?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6119,6 +5293,20 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6135,37 +5323,53 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type PlayerListRelationFilter = {
-    every?: PlayerWhereInput
-    some?: PlayerWhereInput
-    none?: PlayerWhereInput
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type PlayerOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
-  export type PositionCountOrderByAggregateInput = {
+  export type FolderCountOrderByAggregateInput = {
+    id?: SortOrder
     nom?: SortOrder
-    id?: SortOrder
+    couleur?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
   }
 
-  export type PositionAvgOrderByAggregateInput = {
+  export type FolderAvgOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
   }
 
-  export type PositionMaxOrderByAggregateInput = {
+  export type FolderMaxOrderByAggregateInput = {
+    id?: SortOrder
     nom?: SortOrder
-    id?: SortOrder
+    couleur?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
   }
 
-  export type PositionMinOrderByAggregateInput = {
+  export type FolderMinOrderByAggregateInput = {
+    id?: SortOrder
     nom?: SortOrder
-    id?: SortOrder
+    couleur?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
   }
 
-  export type PositionSumOrderByAggregateInput = {
+  export type FolderSumOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -6183,35 +5387,81 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type FolderNullableScalarRelationFilter = {
+    is?: FolderWhereInput | null
+    isNot?: FolderWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
-  export type TeamCountOrderByAggregateInput = {
-    nom?: SortOrder
-    pays?: SortOrder
+  export type SnippetCountOrderByAggregateInput = {
     id?: SortOrder
+    titre?: SortOrder
+    description?: SortOrder
+    code?: SortOrder
+    langage?: SortOrder
+    isFavorite?: SortOrder
+    dossierId?: SortOrder
+    utilisateurId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type TeamAvgOrderByAggregateInput = {
+  export type SnippetAvgOrderByAggregateInput = {
     id?: SortOrder
+    dossierId?: SortOrder
+    utilisateurId?: SortOrder
   }
 
-  export type TeamMaxOrderByAggregateInput = {
-    nom?: SortOrder
-    pays?: SortOrder
+  export type SnippetMaxOrderByAggregateInput = {
     id?: SortOrder
+    titre?: SortOrder
+    description?: SortOrder
+    code?: SortOrder
+    langage?: SortOrder
+    isFavorite?: SortOrder
+    dossierId?: SortOrder
+    utilisateurId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type TeamMinOrderByAggregateInput = {
-    nom?: SortOrder
-    pays?: SortOrder
+  export type SnippetMinOrderByAggregateInput = {
     id?: SortOrder
+    titre?: SortOrder
+    description?: SortOrder
+    code?: SortOrder
+    langage?: SortOrder
+    isFavorite?: SortOrder
+    dossierId?: SortOrder
+    utilisateurId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type TeamSumOrderByAggregateInput = {
+  export type SnippetSumOrderByAggregateInput = {
     id?: SortOrder
+    dossierId?: SortOrder
+    utilisateurId?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6232,96 +5482,96 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type UserCountOrderByAggregateInput = {
-    id?: SortOrder
-    prenom?: SortOrder
-    nom?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type UserMaxOrderByAggregateInput = {
-    id?: SortOrder
-    prenom?: SortOrder
-    nom?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type UserMinOrderByAggregateInput = {
-    id?: SortOrder
-    prenom?: SortOrder
-    nom?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type PositionCreateNestedOneWithoutPlayersInput = {
-    create?: XOR<PositionCreateWithoutPlayersInput, PositionUncheckedCreateWithoutPlayersInput>
-    connectOrCreate?: PositionCreateOrConnectWithoutPlayersInput
-    connect?: PositionWhereUniqueInput
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type TeamCreateNestedOneWithoutPlayersInput = {
-    create?: XOR<TeamCreateWithoutPlayersInput, TeamUncheckedCreateWithoutPlayersInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutPlayersInput
-    connect?: TeamWhereUniqueInput
+  export type FolderCreateNestedManyWithoutUserInput = {
+    create?: XOR<FolderCreateWithoutUserInput, FolderUncheckedCreateWithoutUserInput> | FolderCreateWithoutUserInput[] | FolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FolderCreateOrConnectWithoutUserInput | FolderCreateOrConnectWithoutUserInput[]
+    createMany?: FolderCreateManyUserInputEnvelope
+    connect?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+  }
+
+  export type SnippetCreateNestedManyWithoutUserInput = {
+    create?: XOR<SnippetCreateWithoutUserInput, SnippetUncheckedCreateWithoutUserInput> | SnippetCreateWithoutUserInput[] | SnippetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutUserInput | SnippetCreateOrConnectWithoutUserInput[]
+    createMany?: SnippetCreateManyUserInputEnvelope
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+  }
+
+  export type FolderUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FolderCreateWithoutUserInput, FolderUncheckedCreateWithoutUserInput> | FolderCreateWithoutUserInput[] | FolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FolderCreateOrConnectWithoutUserInput | FolderCreateOrConnectWithoutUserInput[]
+    createMany?: FolderCreateManyUserInputEnvelope
+    connect?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+  }
+
+  export type SnippetUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SnippetCreateWithoutUserInput, SnippetUncheckedCreateWithoutUserInput> | SnippetCreateWithoutUserInput[] | SnippetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutUserInput | SnippetCreateOrConnectWithoutUserInput[]
+    createMany?: SnippetCreateManyUserInputEnvelope
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type PositionUpdateOneRequiredWithoutPlayersNestedInput = {
-    create?: XOR<PositionCreateWithoutPlayersInput, PositionUncheckedCreateWithoutPlayersInput>
-    connectOrCreate?: PositionCreateOrConnectWithoutPlayersInput
-    upsert?: PositionUpsertWithoutPlayersInput
-    connect?: PositionWhereUniqueInput
-    update?: XOR<XOR<PositionUpdateToOneWithWhereWithoutPlayersInput, PositionUpdateWithoutPlayersInput>, PositionUncheckedUpdateWithoutPlayersInput>
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
-  export type TeamUpdateOneRequiredWithoutPlayersNestedInput = {
-    create?: XOR<TeamCreateWithoutPlayersInput, TeamUncheckedCreateWithoutPlayersInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutPlayersInput
-    upsert?: TeamUpsertWithoutPlayersInput
-    connect?: TeamWhereUniqueInput
-    update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutPlayersInput, TeamUpdateWithoutPlayersInput>, TeamUncheckedUpdateWithoutPlayersInput>
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
+  export type FolderUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FolderCreateWithoutUserInput, FolderUncheckedCreateWithoutUserInput> | FolderCreateWithoutUserInput[] | FolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FolderCreateOrConnectWithoutUserInput | FolderCreateOrConnectWithoutUserInput[]
+    upsert?: FolderUpsertWithWhereUniqueWithoutUserInput | FolderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FolderCreateManyUserInputEnvelope
+    set?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    disconnect?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    delete?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    connect?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    update?: FolderUpdateWithWhereUniqueWithoutUserInput | FolderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FolderUpdateManyWithWhereWithoutUserInput | FolderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FolderScalarWhereInput | FolderScalarWhereInput[]
+  }
+
+  export type SnippetUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SnippetCreateWithoutUserInput, SnippetUncheckedCreateWithoutUserInput> | SnippetCreateWithoutUserInput[] | SnippetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutUserInput | SnippetCreateOrConnectWithoutUserInput[]
+    upsert?: SnippetUpsertWithWhereUniqueWithoutUserInput | SnippetUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SnippetCreateManyUserInputEnvelope
+    set?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    disconnect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    delete?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    update?: SnippetUpdateWithWhereUniqueWithoutUserInput | SnippetUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SnippetUpdateManyWithWhereWithoutUserInput | SnippetUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SnippetScalarWhereInput | SnippetScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -6332,96 +5582,134 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type PlayerCreateNestedManyWithoutPositionInput = {
-    create?: XOR<PlayerCreateWithoutPositionInput, PlayerUncheckedCreateWithoutPositionInput> | PlayerCreateWithoutPositionInput[] | PlayerUncheckedCreateWithoutPositionInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutPositionInput | PlayerCreateOrConnectWithoutPositionInput[]
-    createMany?: PlayerCreateManyPositionInputEnvelope
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
+  export type FolderUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FolderCreateWithoutUserInput, FolderUncheckedCreateWithoutUserInput> | FolderCreateWithoutUserInput[] | FolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FolderCreateOrConnectWithoutUserInput | FolderCreateOrConnectWithoutUserInput[]
+    upsert?: FolderUpsertWithWhereUniqueWithoutUserInput | FolderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FolderCreateManyUserInputEnvelope
+    set?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    disconnect?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    delete?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    connect?: FolderWhereUniqueInput | FolderWhereUniqueInput[]
+    update?: FolderUpdateWithWhereUniqueWithoutUserInput | FolderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FolderUpdateManyWithWhereWithoutUserInput | FolderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FolderScalarWhereInput | FolderScalarWhereInput[]
   }
 
-  export type PlayerUncheckedCreateNestedManyWithoutPositionInput = {
-    create?: XOR<PlayerCreateWithoutPositionInput, PlayerUncheckedCreateWithoutPositionInput> | PlayerCreateWithoutPositionInput[] | PlayerUncheckedCreateWithoutPositionInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutPositionInput | PlayerCreateOrConnectWithoutPositionInput[]
-    createMany?: PlayerCreateManyPositionInputEnvelope
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
+  export type SnippetUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SnippetCreateWithoutUserInput, SnippetUncheckedCreateWithoutUserInput> | SnippetCreateWithoutUserInput[] | SnippetUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutUserInput | SnippetCreateOrConnectWithoutUserInput[]
+    upsert?: SnippetUpsertWithWhereUniqueWithoutUserInput | SnippetUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SnippetCreateManyUserInputEnvelope
+    set?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    disconnect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    delete?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    update?: SnippetUpdateWithWhereUniqueWithoutUserInput | SnippetUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SnippetUpdateManyWithWhereWithoutUserInput | SnippetUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SnippetScalarWhereInput | SnippetScalarWhereInput[]
   }
 
-  export type PlayerUpdateManyWithoutPositionNestedInput = {
-    create?: XOR<PlayerCreateWithoutPositionInput, PlayerUncheckedCreateWithoutPositionInput> | PlayerCreateWithoutPositionInput[] | PlayerUncheckedCreateWithoutPositionInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutPositionInput | PlayerCreateOrConnectWithoutPositionInput[]
-    upsert?: PlayerUpsertWithWhereUniqueWithoutPositionInput | PlayerUpsertWithWhereUniqueWithoutPositionInput[]
-    createMany?: PlayerCreateManyPositionInputEnvelope
-    set?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    disconnect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    delete?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    update?: PlayerUpdateWithWhereUniqueWithoutPositionInput | PlayerUpdateWithWhereUniqueWithoutPositionInput[]
-    updateMany?: PlayerUpdateManyWithWhereWithoutPositionInput | PlayerUpdateManyWithWhereWithoutPositionInput[]
-    deleteMany?: PlayerScalarWhereInput | PlayerScalarWhereInput[]
+  export type UserCreateNestedOneWithoutFoldersInput = {
+    create?: XOR<UserCreateWithoutFoldersInput, UserUncheckedCreateWithoutFoldersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFoldersInput
+    connect?: UserWhereUniqueInput
   }
 
-  export type PlayerUncheckedUpdateManyWithoutPositionNestedInput = {
-    create?: XOR<PlayerCreateWithoutPositionInput, PlayerUncheckedCreateWithoutPositionInput> | PlayerCreateWithoutPositionInput[] | PlayerUncheckedCreateWithoutPositionInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutPositionInput | PlayerCreateOrConnectWithoutPositionInput[]
-    upsert?: PlayerUpsertWithWhereUniqueWithoutPositionInput | PlayerUpsertWithWhereUniqueWithoutPositionInput[]
-    createMany?: PlayerCreateManyPositionInputEnvelope
-    set?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    disconnect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    delete?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    update?: PlayerUpdateWithWhereUniqueWithoutPositionInput | PlayerUpdateWithWhereUniqueWithoutPositionInput[]
-    updateMany?: PlayerUpdateManyWithWhereWithoutPositionInput | PlayerUpdateManyWithWhereWithoutPositionInput[]
-    deleteMany?: PlayerScalarWhereInput | PlayerScalarWhereInput[]
+  export type SnippetCreateNestedManyWithoutFolderInput = {
+    create?: XOR<SnippetCreateWithoutFolderInput, SnippetUncheckedCreateWithoutFolderInput> | SnippetCreateWithoutFolderInput[] | SnippetUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutFolderInput | SnippetCreateOrConnectWithoutFolderInput[]
+    createMany?: SnippetCreateManyFolderInputEnvelope
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
   }
 
-  export type PlayerCreateNestedManyWithoutTeamInput = {
-    create?: XOR<PlayerCreateWithoutTeamInput, PlayerUncheckedCreateWithoutTeamInput> | PlayerCreateWithoutTeamInput[] | PlayerUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutTeamInput | PlayerCreateOrConnectWithoutTeamInput[]
-    createMany?: PlayerCreateManyTeamInputEnvelope
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
+  export type SnippetUncheckedCreateNestedManyWithoutFolderInput = {
+    create?: XOR<SnippetCreateWithoutFolderInput, SnippetUncheckedCreateWithoutFolderInput> | SnippetCreateWithoutFolderInput[] | SnippetUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutFolderInput | SnippetCreateOrConnectWithoutFolderInput[]
+    createMany?: SnippetCreateManyFolderInputEnvelope
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
   }
 
-  export type PlayerUncheckedCreateNestedManyWithoutTeamInput = {
-    create?: XOR<PlayerCreateWithoutTeamInput, PlayerUncheckedCreateWithoutTeamInput> | PlayerCreateWithoutTeamInput[] | PlayerUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutTeamInput | PlayerCreateOrConnectWithoutTeamInput[]
-    createMany?: PlayerCreateManyTeamInputEnvelope
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
+  export type UserUpdateOneRequiredWithoutFoldersNestedInput = {
+    create?: XOR<UserCreateWithoutFoldersInput, UserUncheckedCreateWithoutFoldersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFoldersInput
+    upsert?: UserUpsertWithoutFoldersInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFoldersInput, UserUpdateWithoutFoldersInput>, UserUncheckedUpdateWithoutFoldersInput>
+  }
+
+  export type SnippetUpdateManyWithoutFolderNestedInput = {
+    create?: XOR<SnippetCreateWithoutFolderInput, SnippetUncheckedCreateWithoutFolderInput> | SnippetCreateWithoutFolderInput[] | SnippetUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutFolderInput | SnippetCreateOrConnectWithoutFolderInput[]
+    upsert?: SnippetUpsertWithWhereUniqueWithoutFolderInput | SnippetUpsertWithWhereUniqueWithoutFolderInput[]
+    createMany?: SnippetCreateManyFolderInputEnvelope
+    set?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    disconnect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    delete?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    update?: SnippetUpdateWithWhereUniqueWithoutFolderInput | SnippetUpdateWithWhereUniqueWithoutFolderInput[]
+    updateMany?: SnippetUpdateManyWithWhereWithoutFolderInput | SnippetUpdateManyWithWhereWithoutFolderInput[]
+    deleteMany?: SnippetScalarWhereInput | SnippetScalarWhereInput[]
+  }
+
+  export type SnippetUncheckedUpdateManyWithoutFolderNestedInput = {
+    create?: XOR<SnippetCreateWithoutFolderInput, SnippetUncheckedCreateWithoutFolderInput> | SnippetCreateWithoutFolderInput[] | SnippetUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SnippetCreateOrConnectWithoutFolderInput | SnippetCreateOrConnectWithoutFolderInput[]
+    upsert?: SnippetUpsertWithWhereUniqueWithoutFolderInput | SnippetUpsertWithWhereUniqueWithoutFolderInput[]
+    createMany?: SnippetCreateManyFolderInputEnvelope
+    set?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    disconnect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    delete?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    connect?: SnippetWhereUniqueInput | SnippetWhereUniqueInput[]
+    update?: SnippetUpdateWithWhereUniqueWithoutFolderInput | SnippetUpdateWithWhereUniqueWithoutFolderInput[]
+    updateMany?: SnippetUpdateManyWithWhereWithoutFolderInput | SnippetUpdateManyWithWhereWithoutFolderInput[]
+    deleteMany?: SnippetScalarWhereInput | SnippetScalarWhereInput[]
+  }
+
+  export type FolderCreateNestedOneWithoutSnippetsInput = {
+    create?: XOR<FolderCreateWithoutSnippetsInput, FolderUncheckedCreateWithoutSnippetsInput>
+    connectOrCreate?: FolderCreateOrConnectWithoutSnippetsInput
+    connect?: FolderWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutSnippetsInput = {
+    create?: XOR<UserCreateWithoutSnippetsInput, UserUncheckedCreateWithoutSnippetsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSnippetsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
-  export type PlayerUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<PlayerCreateWithoutTeamInput, PlayerUncheckedCreateWithoutTeamInput> | PlayerCreateWithoutTeamInput[] | PlayerUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutTeamInput | PlayerCreateOrConnectWithoutTeamInput[]
-    upsert?: PlayerUpsertWithWhereUniqueWithoutTeamInput | PlayerUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: PlayerCreateManyTeamInputEnvelope
-    set?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    disconnect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    delete?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    update?: PlayerUpdateWithWhereUniqueWithoutTeamInput | PlayerUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: PlayerUpdateManyWithWhereWithoutTeamInput | PlayerUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: PlayerScalarWhereInput | PlayerScalarWhereInput[]
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
-  export type PlayerUncheckedUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<PlayerCreateWithoutTeamInput, PlayerUncheckedCreateWithoutTeamInput> | PlayerCreateWithoutTeamInput[] | PlayerUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: PlayerCreateOrConnectWithoutTeamInput | PlayerCreateOrConnectWithoutTeamInput[]
-    upsert?: PlayerUpsertWithWhereUniqueWithoutTeamInput | PlayerUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: PlayerCreateManyTeamInputEnvelope
-    set?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    disconnect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    delete?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    connect?: PlayerWhereUniqueInput | PlayerWhereUniqueInput[]
-    update?: PlayerUpdateWithWhereUniqueWithoutTeamInput | PlayerUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: PlayerUpdateManyWithWhereWithoutTeamInput | PlayerUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: PlayerScalarWhereInput | PlayerScalarWhereInput[]
+  export type FolderUpdateOneWithoutSnippetsNestedInput = {
+    create?: XOR<FolderCreateWithoutSnippetsInput, FolderUncheckedCreateWithoutSnippetsInput>
+    connectOrCreate?: FolderCreateOrConnectWithoutSnippetsInput
+    upsert?: FolderUpsertWithoutSnippetsInput
+    disconnect?: FolderWhereInput | boolean
+    delete?: FolderWhereInput | boolean
+    connect?: FolderWhereUniqueInput
+    update?: XOR<XOR<FolderUpdateToOneWithWhereWithoutSnippetsInput, FolderUpdateWithoutSnippetsInput>, FolderUncheckedUpdateWithoutSnippetsInput>
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type UserUpdateOneRequiredWithoutSnippetsNestedInput = {
+    create?: XOR<UserCreateWithoutSnippetsInput, UserUncheckedCreateWithoutSnippetsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSnippetsInput
+    upsert?: UserUpsertWithoutSnippetsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSnippetsInput, UserUpdateWithoutSnippetsInput>, UserUncheckedUpdateWithoutSnippetsInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6438,6 +5726,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6447,6 +5746,13 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6464,6 +5770,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6493,6 +5813,16 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -6505,6 +5835,22 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6524,7 +5870,15 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -6532,247 +5886,466 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type PositionCreateWithoutPlayersInput = {
+  export type FolderCreateWithoutUserInput = {
     nom: string
+    couleur: string
+    createdAt?: Date | string
+    snippets?: SnippetCreateNestedManyWithoutFolderInput
   }
 
-  export type PositionUncheckedCreateWithoutPlayersInput = {
-    nom: string
+  export type FolderUncheckedCreateWithoutUserInput = {
     id?: number
-  }
-
-  export type PositionCreateOrConnectWithoutPlayersInput = {
-    where: PositionWhereUniqueInput
-    create: XOR<PositionCreateWithoutPlayersInput, PositionUncheckedCreateWithoutPlayersInput>
-  }
-
-  export type TeamCreateWithoutPlayersInput = {
     nom: string
-    pays?: string | null
+    couleur: string
+    createdAt?: Date | string
+    snippets?: SnippetUncheckedCreateNestedManyWithoutFolderInput
   }
 
-  export type TeamUncheckedCreateWithoutPlayersInput = {
-    nom: string
-    pays?: string | null
-    id?: number
+  export type FolderCreateOrConnectWithoutUserInput = {
+    where: FolderWhereUniqueInput
+    create: XOR<FolderCreateWithoutUserInput, FolderUncheckedCreateWithoutUserInput>
   }
 
-  export type TeamCreateOrConnectWithoutPlayersInput = {
-    where: TeamWhereUniqueInput
-    create: XOR<TeamCreateWithoutPlayersInput, TeamUncheckedCreateWithoutPlayersInput>
-  }
-
-  export type PositionUpsertWithoutPlayersInput = {
-    update: XOR<PositionUpdateWithoutPlayersInput, PositionUncheckedUpdateWithoutPlayersInput>
-    create: XOR<PositionCreateWithoutPlayersInput, PositionUncheckedCreateWithoutPlayersInput>
-    where?: PositionWhereInput
-  }
-
-  export type PositionUpdateToOneWithWhereWithoutPlayersInput = {
-    where?: PositionWhereInput
-    data: XOR<PositionUpdateWithoutPlayersInput, PositionUncheckedUpdateWithoutPlayersInput>
-  }
-
-  export type PositionUpdateWithoutPlayersInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PositionUncheckedUpdateWithoutPlayersInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TeamUpsertWithoutPlayersInput = {
-    update: XOR<TeamUpdateWithoutPlayersInput, TeamUncheckedUpdateWithoutPlayersInput>
-    create: XOR<TeamCreateWithoutPlayersInput, TeamUncheckedCreateWithoutPlayersInput>
-    where?: TeamWhereInput
-  }
-
-  export type TeamUpdateToOneWithWhereWithoutPlayersInput = {
-    where?: TeamWhereInput
-    data: XOR<TeamUpdateWithoutPlayersInput, TeamUncheckedUpdateWithoutPlayersInput>
-  }
-
-  export type TeamUpdateWithoutPlayersInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    pays?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type TeamUncheckedUpdateWithoutPlayersInput = {
-    nom?: StringFieldUpdateOperationsInput | string
-    pays?: NullableStringFieldUpdateOperationsInput | string | null
-    id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PlayerCreateWithoutPositionInput = {
-    prenom: string
-    nom: string
-    team: TeamCreateNestedOneWithoutPlayersInput
-  }
-
-  export type PlayerUncheckedCreateWithoutPositionInput = {
-    prenom: string
-    nom: string
-    id?: number
-    teamId: number
-  }
-
-  export type PlayerCreateOrConnectWithoutPositionInput = {
-    where: PlayerWhereUniqueInput
-    create: XOR<PlayerCreateWithoutPositionInput, PlayerUncheckedCreateWithoutPositionInput>
-  }
-
-  export type PlayerCreateManyPositionInputEnvelope = {
-    data: PlayerCreateManyPositionInput | PlayerCreateManyPositionInput[]
+  export type FolderCreateManyUserInputEnvelope = {
+    data: FolderCreateManyUserInput | FolderCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type PlayerUpsertWithWhereUniqueWithoutPositionInput = {
-    where: PlayerWhereUniqueInput
-    update: XOR<PlayerUpdateWithoutPositionInput, PlayerUncheckedUpdateWithoutPositionInput>
-    create: XOR<PlayerCreateWithoutPositionInput, PlayerUncheckedCreateWithoutPositionInput>
+  export type SnippetCreateWithoutUserInput = {
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    folder?: FolderCreateNestedOneWithoutSnippetsInput
   }
 
-  export type PlayerUpdateWithWhereUniqueWithoutPositionInput = {
-    where: PlayerWhereUniqueInput
-    data: XOR<PlayerUpdateWithoutPositionInput, PlayerUncheckedUpdateWithoutPositionInput>
-  }
-
-  export type PlayerUpdateManyWithWhereWithoutPositionInput = {
-    where: PlayerScalarWhereInput
-    data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyWithoutPositionInput>
-  }
-
-  export type PlayerScalarWhereInput = {
-    AND?: PlayerScalarWhereInput | PlayerScalarWhereInput[]
-    OR?: PlayerScalarWhereInput[]
-    NOT?: PlayerScalarWhereInput | PlayerScalarWhereInput[]
-    prenom?: StringFilter<"Player"> | string
-    nom?: StringFilter<"Player"> | string
-    id?: IntFilter<"Player"> | number
-    teamId?: IntFilter<"Player"> | number
-    positionId?: IntFilter<"Player"> | number
-  }
-
-  export type PlayerCreateWithoutTeamInput = {
-    prenom: string
-    nom: string
-    position: PositionCreateNestedOneWithoutPlayersInput
-  }
-
-  export type PlayerUncheckedCreateWithoutTeamInput = {
-    prenom: string
-    nom: string
+  export type SnippetUncheckedCreateWithoutUserInput = {
     id?: number
-    positionId: number
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    dossierId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type PlayerCreateOrConnectWithoutTeamInput = {
-    where: PlayerWhereUniqueInput
-    create: XOR<PlayerCreateWithoutTeamInput, PlayerUncheckedCreateWithoutTeamInput>
+  export type SnippetCreateOrConnectWithoutUserInput = {
+    where: SnippetWhereUniqueInput
+    create: XOR<SnippetCreateWithoutUserInput, SnippetUncheckedCreateWithoutUserInput>
   }
 
-  export type PlayerCreateManyTeamInputEnvelope = {
-    data: PlayerCreateManyTeamInput | PlayerCreateManyTeamInput[]
+  export type SnippetCreateManyUserInputEnvelope = {
+    data: SnippetCreateManyUserInput | SnippetCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type PlayerUpsertWithWhereUniqueWithoutTeamInput = {
-    where: PlayerWhereUniqueInput
-    update: XOR<PlayerUpdateWithoutTeamInput, PlayerUncheckedUpdateWithoutTeamInput>
-    create: XOR<PlayerCreateWithoutTeamInput, PlayerUncheckedCreateWithoutTeamInput>
+  export type FolderUpsertWithWhereUniqueWithoutUserInput = {
+    where: FolderWhereUniqueInput
+    update: XOR<FolderUpdateWithoutUserInput, FolderUncheckedUpdateWithoutUserInput>
+    create: XOR<FolderCreateWithoutUserInput, FolderUncheckedCreateWithoutUserInput>
   }
 
-  export type PlayerUpdateWithWhereUniqueWithoutTeamInput = {
-    where: PlayerWhereUniqueInput
-    data: XOR<PlayerUpdateWithoutTeamInput, PlayerUncheckedUpdateWithoutTeamInput>
+  export type FolderUpdateWithWhereUniqueWithoutUserInput = {
+    where: FolderWhereUniqueInput
+    data: XOR<FolderUpdateWithoutUserInput, FolderUncheckedUpdateWithoutUserInput>
   }
 
-  export type PlayerUpdateManyWithWhereWithoutTeamInput = {
-    where: PlayerScalarWhereInput
-    data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyWithoutTeamInput>
+  export type FolderUpdateManyWithWhereWithoutUserInput = {
+    where: FolderScalarWhereInput
+    data: XOR<FolderUpdateManyMutationInput, FolderUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type PlayerCreateManyPositionInput = {
-    prenom: string
-    nom: string
+  export type FolderScalarWhereInput = {
+    AND?: FolderScalarWhereInput | FolderScalarWhereInput[]
+    OR?: FolderScalarWhereInput[]
+    NOT?: FolderScalarWhereInput | FolderScalarWhereInput[]
+    id?: IntFilter<"Folder"> | number
+    nom?: StringFilter<"Folder"> | string
+    couleur?: StringFilter<"Folder"> | string
+    createdAt?: DateTimeFilter<"Folder"> | Date | string
+    userId?: IntFilter<"Folder"> | number
+  }
+
+  export type SnippetUpsertWithWhereUniqueWithoutUserInput = {
+    where: SnippetWhereUniqueInput
+    update: XOR<SnippetUpdateWithoutUserInput, SnippetUncheckedUpdateWithoutUserInput>
+    create: XOR<SnippetCreateWithoutUserInput, SnippetUncheckedCreateWithoutUserInput>
+  }
+
+  export type SnippetUpdateWithWhereUniqueWithoutUserInput = {
+    where: SnippetWhereUniqueInput
+    data: XOR<SnippetUpdateWithoutUserInput, SnippetUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SnippetUpdateManyWithWhereWithoutUserInput = {
+    where: SnippetScalarWhereInput
+    data: XOR<SnippetUpdateManyMutationInput, SnippetUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SnippetScalarWhereInput = {
+    AND?: SnippetScalarWhereInput | SnippetScalarWhereInput[]
+    OR?: SnippetScalarWhereInput[]
+    NOT?: SnippetScalarWhereInput | SnippetScalarWhereInput[]
+    id?: IntFilter<"Snippet"> | number
+    titre?: StringFilter<"Snippet"> | string
+    description?: StringNullableFilter<"Snippet"> | string | null
+    code?: StringFilter<"Snippet"> | string
+    langage?: StringFilter<"Snippet"> | string
+    isFavorite?: BoolFilter<"Snippet"> | boolean
+    dossierId?: IntNullableFilter<"Snippet"> | number | null
+    utilisateurId?: IntFilter<"Snippet"> | number
+    createdAt?: DateTimeFilter<"Snippet"> | Date | string
+    updatedAt?: DateTimeFilter<"Snippet"> | Date | string
+  }
+
+  export type UserCreateWithoutFoldersInput = {
+    email: string
+    password: string
+    createdAt?: Date | string
+    nomUtilisateur: string
+    role?: $Enums.Role
+    snippets?: SnippetCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFoldersInput = {
+    email: string
+    password: string
+    createdAt?: Date | string
     id?: number
-    teamId: number
+    nomUtilisateur: string
+    role?: $Enums.Role
+    snippets?: SnippetUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type PlayerUpdateWithoutPositionInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-    team?: TeamUpdateOneRequiredWithoutPlayersNestedInput
+  export type UserCreateOrConnectWithoutFoldersInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFoldersInput, UserUncheckedCreateWithoutFoldersInput>
   }
 
-  export type PlayerUncheckedUpdateWithoutPositionInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-    id?: IntFieldUpdateOperationsInput | number
-    teamId?: IntFieldUpdateOperationsInput | number
+  export type SnippetCreateWithoutFolderInput = {
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSnippetsInput
   }
 
-  export type PlayerUncheckedUpdateManyWithoutPositionInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-    id?: IntFieldUpdateOperationsInput | number
-    teamId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PlayerCreateManyTeamInput = {
-    prenom: string
-    nom: string
+  export type SnippetUncheckedCreateWithoutFolderInput = {
     id?: number
-    positionId: number
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    utilisateurId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type PlayerUpdateWithoutTeamInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
-    position?: PositionUpdateOneRequiredWithoutPlayersNestedInput
+  export type SnippetCreateOrConnectWithoutFolderInput = {
+    where: SnippetWhereUniqueInput
+    create: XOR<SnippetCreateWithoutFolderInput, SnippetUncheckedCreateWithoutFolderInput>
   }
 
-  export type PlayerUncheckedUpdateWithoutTeamInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
-    nom?: StringFieldUpdateOperationsInput | string
+  export type SnippetCreateManyFolderInputEnvelope = {
+    data: SnippetCreateManyFolderInput | SnippetCreateManyFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutFoldersInput = {
+    update: XOR<UserUpdateWithoutFoldersInput, UserUncheckedUpdateWithoutFoldersInput>
+    create: XOR<UserCreateWithoutFoldersInput, UserUncheckedCreateWithoutFoldersInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFoldersInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFoldersInput, UserUncheckedUpdateWithoutFoldersInput>
+  }
+
+  export type UserUpdateWithoutFoldersInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    snippets?: SnippetUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFoldersInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id?: IntFieldUpdateOperationsInput | number
-    positionId?: IntFieldUpdateOperationsInput | number
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    snippets?: SnippetUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type PlayerUncheckedUpdateManyWithoutTeamInput = {
-    prenom?: StringFieldUpdateOperationsInput | string
+  export type SnippetUpsertWithWhereUniqueWithoutFolderInput = {
+    where: SnippetWhereUniqueInput
+    update: XOR<SnippetUpdateWithoutFolderInput, SnippetUncheckedUpdateWithoutFolderInput>
+    create: XOR<SnippetCreateWithoutFolderInput, SnippetUncheckedCreateWithoutFolderInput>
+  }
+
+  export type SnippetUpdateWithWhereUniqueWithoutFolderInput = {
+    where: SnippetWhereUniqueInput
+    data: XOR<SnippetUpdateWithoutFolderInput, SnippetUncheckedUpdateWithoutFolderInput>
+  }
+
+  export type SnippetUpdateManyWithWhereWithoutFolderInput = {
+    where: SnippetScalarWhereInput
+    data: XOR<SnippetUpdateManyMutationInput, SnippetUncheckedUpdateManyWithoutFolderInput>
+  }
+
+  export type FolderCreateWithoutSnippetsInput = {
+    nom: string
+    couleur: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFoldersInput
+  }
+
+  export type FolderUncheckedCreateWithoutSnippetsInput = {
+    id?: number
+    nom: string
+    couleur: string
+    createdAt?: Date | string
+    userId: number
+  }
+
+  export type FolderCreateOrConnectWithoutSnippetsInput = {
+    where: FolderWhereUniqueInput
+    create: XOR<FolderCreateWithoutSnippetsInput, FolderUncheckedCreateWithoutSnippetsInput>
+  }
+
+  export type UserCreateWithoutSnippetsInput = {
+    email: string
+    password: string
+    createdAt?: Date | string
+    nomUtilisateur: string
+    role?: $Enums.Role
+    folders?: FolderCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSnippetsInput = {
+    email: string
+    password: string
+    createdAt?: Date | string
+    id?: number
+    nomUtilisateur: string
+    role?: $Enums.Role
+    folders?: FolderUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSnippetsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSnippetsInput, UserUncheckedCreateWithoutSnippetsInput>
+  }
+
+  export type FolderUpsertWithoutSnippetsInput = {
+    update: XOR<FolderUpdateWithoutSnippetsInput, FolderUncheckedUpdateWithoutSnippetsInput>
+    create: XOR<FolderCreateWithoutSnippetsInput, FolderUncheckedCreateWithoutSnippetsInput>
+    where?: FolderWhereInput
+  }
+
+  export type FolderUpdateToOneWithWhereWithoutSnippetsInput = {
+    where?: FolderWhereInput
+    data: XOR<FolderUpdateWithoutSnippetsInput, FolderUncheckedUpdateWithoutSnippetsInput>
+  }
+
+  export type FolderUpdateWithoutSnippetsInput = {
     nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFoldersNestedInput
+  }
+
+  export type FolderUncheckedUpdateWithoutSnippetsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    positionId?: IntFieldUpdateOperationsInput | number
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserUpsertWithoutSnippetsInput = {
+    update: XOR<UserUpdateWithoutSnippetsInput, UserUncheckedUpdateWithoutSnippetsInput>
+    create: XOR<UserCreateWithoutSnippetsInput, UserUncheckedCreateWithoutSnippetsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSnippetsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSnippetsInput, UserUncheckedUpdateWithoutSnippetsInput>
+  }
+
+  export type UserUpdateWithoutSnippetsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    folders?: FolderUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSnippetsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    nomUtilisateur?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    folders?: FolderUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type FolderCreateManyUserInput = {
+    id?: number
+    nom: string
+    couleur: string
+    createdAt?: Date | string
+  }
+
+  export type SnippetCreateManyUserInput = {
+    id?: number
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    dossierId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FolderUpdateWithoutUserInput = {
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    snippets?: SnippetUpdateManyWithoutFolderNestedInput
+  }
+
+  export type FolderUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    snippets?: SnippetUncheckedUpdateManyWithoutFolderNestedInput
+  }
+
+  export type FolderUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nom?: StringFieldUpdateOperationsInput | string
+    couleur?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SnippetUpdateWithoutUserInput = {
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folder?: FolderUpdateOneWithoutSnippetsNestedInput
+  }
+
+  export type SnippetUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    dossierId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SnippetUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    dossierId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SnippetCreateManyFolderInput = {
+    id?: number
+    titre: string
+    description?: string | null
+    code: string
+    langage: string
+    isFavorite?: boolean
+    utilisateurId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SnippetUpdateWithoutFolderInput = {
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSnippetsNestedInput
+  }
+
+  export type SnippetUncheckedUpdateWithoutFolderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    utilisateurId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SnippetUncheckedUpdateManyWithoutFolderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    langage?: StringFieldUpdateOperationsInput | string
+    isFavorite?: BoolFieldUpdateOperationsInput | boolean
+    utilisateurId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

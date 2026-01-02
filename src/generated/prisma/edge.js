@@ -92,32 +92,34 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.PlayerScalarFieldEnum = {
-  prenom: 'prenom',
-  nom: 'nom',
-  id: 'id',
-  teamId: 'teamId',
-  positionId: 'positionId'
-};
-
-exports.Prisma.PositionScalarFieldEnum = {
-  nom: 'nom',
-  id: 'id'
-};
-
-exports.Prisma.TeamScalarFieldEnum = {
-  nom: 'nom',
-  pays: 'pays',
-  id: 'id'
-};
-
 exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  prenom: 'prenom',
-  nom: 'nom',
   email: 'email',
   password: 'password',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  id: 'id',
+  nomUtilisateur: 'nomUtilisateur',
+  role: 'role'
+};
+
+exports.Prisma.FolderScalarFieldEnum = {
+  id: 'id',
+  nom: 'nom',
+  couleur: 'couleur',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.SnippetScalarFieldEnum = {
+  id: 'id',
+  titre: 'titre',
+  description: 'description',
+  code: 'code',
+  langage: 'langage',
+  isFavorite: 'isFavorite',
+  dossierId: 'dossierId',
+  utilisateurId: 'utilisateurId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -134,13 +136,15 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Role = exports.$Enums.Role = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
 
 exports.Prisma.ModelName = {
-  Player: 'Player',
-  Position: 'Position',
-  Team: 'Team',
-  User: 'User'
+  User: 'User',
+  Folder: 'Folder',
+  Snippet: 'Snippet'
 };
 /**
  * Create the Client
@@ -150,10 +154,10 @@ const config = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Player {\n  prenom     String\n  nom        String\n  id         Int      @id @default(autoincrement())\n  teamId     Int      @map(\"team_id\")\n  positionId Int      @map(\"position_id\")\n  position   Position @relation(fields: [positionId], references: [id])\n  team       Team     @relation(fields: [teamId], references: [id])\n}\n\nmodel Position {\n  nom     String   @unique\n  id      Int      @id @default(autoincrement())\n  players Player[]\n}\n\nmodel Team {\n  nom     String\n  pays    String?\n  id      Int      @id @default(autoincrement())\n  players Player[]\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  prenom    String\n  nom       String\n  email     String   @unique\n  password  String\n  createdAt DateTime @default(now()) @map(\"created_at\")\n}\n"
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  email          String   @unique\n  password       String\n  createdAt      DateTime @default(now()) @map(\"created_at\")\n  id             Int      @id @default(autoincrement())\n  nomUtilisateur String   @map(\"nom_utilisateur\")\n  role           Role     @default(USER)\n\n  folders  Folder[]\n  snippets Snippet[]\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nmodel Folder {\n  id        Int      @id @default(autoincrement())\n  nom       String\n  couleur   String\n  createdAt DateTime @default(now()) @map(\"created_at\")\n\n  userId Int\n  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  snippets Snippet[]\n\n  @@map(\"folders\")\n}\n\nmodel Snippet {\n  id          Int     @id @default(autoincrement())\n  titre       String\n  description String? @db.Text\n  code        String  @db.Text\n  langage     String\n  isFavorite  Boolean @default(false)\n\n  dossierId Int?\n  folder    Folder? @relation(fields: [dossierId], references: [id], onDelete: SetNull)\n\n  utilisateurId Int\n  user          User @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)\n\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @updatedAt\n\n  @@map(\"snippets\")\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Player\":{\"fields\":[{\"name\":\"prenom\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nom\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"team_id\"},{\"name\":\"positionId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"position_id\"},{\"name\":\"position\",\"kind\":\"object\",\"type\":\"Position\",\"relationName\":\"PlayerToPosition\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"PlayerToTeam\"}],\"dbName\":null},\"Position\":{\"fields\":[{\"name\":\"nom\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"players\",\"kind\":\"object\",\"type\":\"Player\",\"relationName\":\"PlayerToPosition\"}],\"dbName\":null},\"Team\":{\"fields\":[{\"name\":\"nom\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pays\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"players\",\"kind\":\"object\",\"type\":\"Player\",\"relationName\":\"PlayerToTeam\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prenom\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nom\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nomUtilisateur\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"nom_utilisateur\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"folders\",\"kind\":\"object\",\"type\":\"Folder\",\"relationName\":\"FolderToUser\"},{\"name\":\"snippets\",\"kind\":\"object\",\"type\":\"Snippet\",\"relationName\":\"SnippetToUser\"}],\"dbName\":null},\"Folder\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"couleur\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"FolderToUser\"},{\"name\":\"snippets\",\"kind\":\"object\",\"type\":\"Snippet\",\"relationName\":\"FolderToSnippet\"}],\"dbName\":\"folders\"},\"Snippet\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"titre\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"langage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isFavorite\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"dossierId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"folder\",\"kind\":\"object\",\"type\":\"Folder\",\"relationName\":\"FolderToSnippet\"},{\"name\":\"utilisateurId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SnippetToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"snippets\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
   getRuntime: async () => require('./query_compiler_bg.js'),

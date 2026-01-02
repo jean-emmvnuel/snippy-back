@@ -3,30 +3,19 @@ import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
 
 
 export class registerDto {
+// username
     @ApiProperty({
-        example: 'John',
-        description: 'Prenom de l\'utilisateur',
-        required: true,
-        minLength: 3,
-        maxLength: 50,
-    })
-    @IsString({ message: 'Le prenom doit etre une chaine de caracteres' })
-    @IsNotEmpty({ message: 'Le prenom est obligatoire' })
-    prenom: string;
-
-
-    @ApiProperty({
-        example: 'Doe',
+        example: 'Jean Emmanuel',
         description: 'Nom de l\'utilisateur',
         required: true,
         minLength: 3,
-        maxLength: 50,
+        maxLength: 25,
     })
-    @IsString({ message: 'Le nom doit etre une chaine de caracteres' })
-    @IsNotEmpty({ message: 'Le nom est obligatoire' })
-    nom: string;
+    @IsString({ message: "Le nom d'utilisateur doit etre une chaine de caracteres" })
+    @IsNotEmpty({ message: "Le nom d'utilisateur est obligatoire" })
+    nomUtilisateur: string;
 
-
+// email
     @ApiProperty({
         example: 'john.doe@example.com',
         description: 'Email de l\'utilisateur',
@@ -39,7 +28,7 @@ export class registerDto {
     }, { message: 'L\'email doit etre un email valide' })
     email: string;
 
-    
+// password
     @ApiProperty({
         example: 'password123',
         description: 'Mot de passe de l\'utilisateur',
@@ -48,6 +37,7 @@ export class registerDto {
         maxLength: 50,
     })
     @IsString({ message: 'Le mot de passe doit etre une chaine de caracteres' })
+    @IsNotEmpty({ message: "Le mot de passe est obligatoire"})
     @MinLength(8, { message: 'Le mot de passe doit contenir au moins 8 caracteres' })
     password: string;
 }
