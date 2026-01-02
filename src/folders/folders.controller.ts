@@ -3,10 +3,20 @@ import { FoldersService } from './folders.service';
 import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 import { createFolderDTO } from './dto/createFolder.dto';
 import { updateFolderDTO } from './dto/updateFolder.dto';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/roles.decorator';
 
 @Controller('folders')
 export class FoldersController {
     constructor(private readonly folderService: FoldersService) {}
+
+    // nombre total de dossier cree
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles("ADMIN")
+    @Get("/count")
+    async countFolders(){
+        return this.folderService.countFolders()
+    }
 
     // recuperer tous les dossiers d'un utilisateur
     @UseGuards(JwtAuthGuard)
@@ -42,4 +52,6 @@ export class FoldersController {
     async deleteFolder(@Request() req ,@Param('id', ParseIntPipe) id: number){
         return this.folderService.deleteFolder(req.user.sub, id)
     }
+
+    
 }

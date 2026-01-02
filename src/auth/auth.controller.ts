@@ -10,10 +10,27 @@ import { Roles } from './roles.decorator';
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
+    // nombre total d'utilisateur
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles("ADMIN")
+    @Get("countUsers")
+    async countUsers() {
+        return this.authService.countUsers();
+    }
+
+    // liste de tous les utilisateur
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles("ADMIN")
+    @Get("getAllUsers")
+    async getAllUsers() {
+        return this.authService.getAllUsers();
+    }
+
     @Post('/register')
     async register(@Body() data: registerDto) {
         return this.authService.register(data);
     }
+
 
     @Post('/login')
     async login(@Body() data: loginDto) {
@@ -26,10 +43,6 @@ export class AuthController {
         return this.authService.validateUser(req.user.sub);
     }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles("ADMIN")
-    @Post("dash")
-    getAdminDash(@Body() data: loginDto) {
-        return this.authService.login(data);
-    }
+
+    
 }

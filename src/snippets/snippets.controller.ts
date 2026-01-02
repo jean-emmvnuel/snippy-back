@@ -3,10 +3,28 @@ import { SnippetsService } from './snippets.service';
 import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 import { CreateSnippetDto } from './dto/createSnippet.dto';
 import { UpdateSnippetDto } from './dto/updateSnippet.dto';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/roles.decorator';
 
 @Controller('snippets')
 export class SnippetsController {
     constructor(private readonly snippetsService: SnippetsService) {}
+
+    // recupere le nombre total de snippet
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles("ADMIN")
+    @Get('/count')
+    countSnippets() {
+        return this.snippetsService.countSnippets();
+    }
+
+    // recupere la liste de tous les snippet
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles("ADMIN")
+    @Get('/all')
+    getAllSnippets() {
+        return this.snippetsService.getAllSnippets();
+    }
 
     // recupere tous les snippets de l'utilisateur
     @UseGuards(JwtAuthGuard)
@@ -64,4 +82,6 @@ export class SnippetsController {
     searchSnippetsInFolder(@Request() req, @Param('folderId', ParseIntPipe) folderId: number, @Param('query') query: string) {
         return this.snippetsService.searchSnippetsInFolder(req.user.sub, folderId, query);
     }
+
+    
 }

@@ -129,4 +129,15 @@ export class FoldersService {
             message: "dossier supprime avec succes"
         }
     }
+
+    // nombre total de dossier cree
+    async countFolders() {
+        const count = await this.prisma.folder.count({
+        });
+        return {
+            status: true,
+            message: "nombre total de dossier",
+            data: count,
+        };
+    }
 }

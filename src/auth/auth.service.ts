@@ -109,4 +109,16 @@ export class AuthService {
         return user;
     }
 
+
+    // nombre total d'utilisateur
+    async countUsers() {
+        const count = await this.prisma.user.count();
+        return count;
+    }
+
+    // liste de tous les utilisateur
+    async getAllUsers() {
+        const users = await this.prisma.user.findMany();
+        return users;
+    }
 }

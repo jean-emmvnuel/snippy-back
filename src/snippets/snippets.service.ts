@@ -212,4 +212,26 @@ export class SnippetsService {
             data: snippets,
         };
     }
+
+    //nombre total de snippet
+    async countSnippets() {
+        const count = await this.prisma.snippet.count({
+        });
+        return {
+            status: true,
+            message: "nombre total de snippet",
+            data: count,
+        };
+    }
+
+    //liste de tous les snippet
+    async getAllSnippets() {
+        const snippets = await this.prisma.snippet.findMany({
+        });
+        return {
+            status: true,
+            message: "liste des snippets",
+            data: snippets,
+        };
+    }
 }
