@@ -71,6 +71,11 @@ Assurez-vous d'avoir [Node.js](https://nodejs.org/) et [PostgreSQL](https://www.
 
 Le serveur démarrera par défaut sur `http://localhost:3001`.
 
+## 🌐 API en Production
+
+L'API est déployée et accessible à l'adresse suivante :
+**https://snippy-back.onrender.com**
+
 ## 📚 Documentation Interactive
 
 Pour explorer et tester les endpoints de l'API Snippy sans interface frontend :
